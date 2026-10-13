@@ -337,11 +337,11 @@ function oa(mood='happy'){
     : `<path d="M82 98 Q100 118 118 98 Q100 104 82 98Z" fill="#fff" stroke="#161616" stroke-width="3.5" stroke-linejoin="round"/>`;
   const armsUp = mood==='cheer';
   const leftArm = armsUp
-    ? `<path d="M64 140 L38 118 L28 132 L56 160Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M38 118 L28 132" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><circle cx="28" cy="116" r="11" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`
-    : `<path d="M62 140 L40 172 L58 184 L76 154Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M40 172 L58 184" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><path d="M44 178 L50 202" stroke="${c.skin}" stroke-width="15" stroke-linecap="round"/><circle cx="51" cy="206" r="10" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`;
+    ? `<path d="M64 140 L38 118 L28 132 L56 160Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M62.9 142.8 L36.6 120.0 M60.8 148.0 L34.0 123.6 M58.7 153.2 L31.4 127.2" stroke="${c.stripe}" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M38 118 L28 132" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><circle cx="28" cy="116" r="11" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`
+    : `<path d="M62 140 L40 172 L58 184 L76 154Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M64.0 142.0 L42.5 173.7 M67.6 145.6 L47.2 176.8 M71.2 149.2 L51.9 179.9" stroke="${c.stripe}" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M40 172 L58 184" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><path d="M44 178 L50 202" stroke="${c.skin}" stroke-width="15" stroke-linecap="round"/><circle cx="51" cy="206" r="10" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`;
   const rightArm = armsUp
-    ? `<path d="M136 140 L162 118 L172 132 L144 160Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M162 118 L172 132" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><circle cx="172" cy="116" r="11" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`
-    : `<path d="M138 140 L160 172 L142 184 L124 154Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M160 172 L142 184" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><path d="M156 178 L150 202" stroke="${c.skin}" stroke-width="15" stroke-linecap="round"/><circle cx="149" cy="206" r="10" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`;
+    ? `<path d="M136 140 L162 118 L172 132 L144 160Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M137.1 142.8 L163.4 120.0 M139.2 148.0 L166.0 123.6 M141.3 153.2 L168.6 127.2" stroke="${c.stripe}" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M162 118 L172 132" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><circle cx="172" cy="116" r="11" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`
+    : `<path d="M138 140 L160 172 L142 184 L124 154Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/><path d="M136.0 142.0 L157.5 173.7 M132.4 145.6 L152.8 176.8 M128.8 149.2 L148.1 179.9" stroke="${c.stripe}" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M160 172 L142 184" stroke="${c.trim}" stroke-width="7" stroke-linecap="round"/><path d="M156 178 L150 202" stroke="${c.skin}" stroke-width="15" stroke-linecap="round"/><circle cx="149" cy="206" r="10" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>`;
   return `<svg viewBox="0 0 200 276" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Oa">
   <!-- legs, socks, boots -->
   <rect x="68" y="228" width="22" height="20" fill="${c.skin}" stroke="#222" stroke-width="3.5"/>
@@ -357,8 +357,6 @@ function oa(mood='happy'){
   <!-- shirt -->
   <path d="M62 140 Q66 126 88 124 L112 124 Q134 126 138 140 L146 200 Q100 214 54 200Z" fill="${c.shirt}" stroke="#222" stroke-width="3.5" stroke-linejoin="round"/>
   <path d="M68 150 Q100 160 132 150 M66 170 Q100 180 134 170 M64 188 Q100 198 136 188" fill="none" stroke="#e8e8ee" stroke-width="2"/>
-  <path d="M64 143 L48 166 M69 146 L53 169 M74 149 L58 172" stroke="${c.stripe}" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-  <path d="M136 143 L152 166 M131 146 L147 169 M126 149 L142 172" stroke="${c.stripe}" stroke-width="3.2" stroke-linecap="round" fill="none"/>
   <circle cx="122" cy="152" r="7" fill="#f4e7a1" stroke="${c.trim}" stroke-width="2.5"/>
   <rect x="74" y="164" width="40" height="7" rx="3.5" fill="${c.trim}"/>
   <path d="M85 124 Q100 144 115 124" fill="${c.skin}" stroke="${c.trim}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
