@@ -169,8 +169,8 @@ h2{font-size:clamp(26px,4vw,40px);color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.25)
 .legend svg{width:1.1em;height:1.1em}
 .tag{display:inline-block;font-weight:900;border-radius:999px;padding:2px 14px;font-size:clamp(16px,2.4vw,22px);color:#fff}
 .tag.g{background:var(--good)} .tag.b{background:var(--coral)}
-.overlay{position:fixed;inset:0;background:rgba(20,10,40,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:100}
-.modal{max-width:620px;width:100%;max-height:92vh;overflow:auto;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;animation:pop .3s}
+.gamedlg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(20,10,40,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:100}
+.dlgcard{max-width:620px;width:100%;max-height:92vh;overflow:auto;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;animation:pop .3s}
 .swatches{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
 .sw{width:clamp(110px,22vw,150px);height:clamp(110px,22vw,150px);border-radius:30px;border:5px solid #fff;font-size:22px;font-weight:900;color:#fff;box-shadow:0 8px 0 rgba(0,0,0,.25);text-shadow:0 2px 0 rgba(0,0,0,.4)}
 .sw:active{transform:translateY(4px)}
@@ -182,28 +182,28 @@ input.num{font-size:34px;width:140px;text-align:center;border:4px solid var(--c1
 /* Games */
 .pen{height:100%;display:flex;flex-direction:column;gap:8px;max-width:980px;margin:0 auto}
 #pitch{position:relative;flex:1;min-height:260px;border:4px solid var(--c1);border-radius:26px;overflow:hidden;background:linear-gradient(#78c8ff 0 20%,#46b34b 20% 100%);touch-action:none}
-#pitch:before{content:"";position:absolute;inset:20% 0 0 0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 12%,transparent 12% 24%)}
+#pitch:before{content:"";position:absolute;top:20%;left:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 12%,transparent 12% 24%)}
 #goal{position:absolute;left:14%;right:14%;top:10%;height:40%;border:8px solid #fff;border-bottom:0;border-radius:8px 8px 0 0;background:rgba(40,40,60,.28)}
-#goal .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 15px),repeating-linear-gradient(-45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 15px)}
+#goal .net{position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 15px),repeating-linear-gradient(-45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 15px)}
 #keeper{position:absolute;left:50%;bottom:0;height:64%;transform:translateX(-50%);transform-origin:50% 100%;transition:transform .4s cubic-bezier(.2,.8,.3,1)}
 #keeper svg{height:100%;width:auto;display:block}
 #pOa{position:absolute;left:30%;top:56%;height:38%;transform:translateX(-50%);transition:transform .25s}
 #pOa.kick{transform:translateX(-30%) translateY(-4%)}
 #pOa svg{height:100%;width:auto;display:block}
-#ball{position:absolute;width:11%;max-width:80px;min-width:38px;aspect-ratio:1;left:56%;top:82%;transform:translate(-50%,-50%);transition:left .6s ease-out,top .6s cubic-bezier(.15,.8,.3,1),transform .6s ease-out}
-#ball svg{width:100%;height:100%;display:block}
+#ball{position:absolute;width:11%;max-width:80px;min-width:38px;left:56%;top:82%;transform:translate(-50%,-50%);transition:left .6s ease-out,top .6s cubic-bezier(.15,.8,.3,1),transform .6s ease-out}
+#ball svg{width:100%;height:auto;display:block}
 #pmsg{position:absolute;left:0;right:0;top:1%;text-align:center;font-size:clamp(30px,6.4vw,60px);font-weight:900;color:#fff;text-shadow:0 5px 0 rgba(0,0,0,.45);opacity:0;transform:scale(.6);pointer-events:none}
 #pmsg.show{opacity:1;transform:scale(1);transition:all .25s}
 #pmsg.bad{color:#ffd0d0}
 #tboard{width:min(92vw,58vh);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px auto}
-.cell{aspect-ratio:1;border-radius:24px;border:4px solid var(--c1);background:#fff;box-shadow:0 7px 0 rgba(0,0,0,.22);font-size:clamp(46px,13vw,100px);display:flex;align-items:center;justify-content:center;padding:0}
+.cell{height:calc((min(92vw,58vh) - 20px)/3);border-radius:24px;border:4px solid var(--c1);background:#fff;box-shadow:0 7px 0 rgba(0,0,0,.22);font-size:clamp(46px,13vw,100px);display:flex;align-items:center;justify-content:center;padding:0}
 .cell:active{transform:translateY(4px)}
 .cell.win{background:var(--accent);animation:pop .5s}
 #c4board{width:min(96vw,calc(58vh*7/6));display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:#2b61d6;border:5px solid #1b3f9c;border-radius:20px;padding:8px;margin:6px auto;box-shadow:0 8px 0 rgba(0,0,0,.25)}
 .c4col{display:flex;flex-direction:column;gap:4px;background:none;border:0;padding:0;border-radius:12px}
 .c4col:active{background:rgba(255,255,255,.18)}
-.hole{aspect-ratio:1;border-radius:50%;background:#eaf1ff;box-shadow:inset 0 4px 6px rgba(0,0,0,.35);position:relative;overflow:hidden;display:block}
-.disc{position:absolute;inset:0;border-radius:50%;animation:dropin .45s cubic-bezier(.4,0,.8,.6) both}
+.hole{height:calc((min(96vw,calc(58vh*7/6)) - 50px)/7);border-radius:50%;background:#eaf1ff;box-shadow:inset 0 4px 6px rgba(0,0,0,.35);position:relative;overflow:hidden;display:block}
+.disc{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:50%;animation:dropin .45s cubic-bezier(.4,0,.8,.6) both}
 .disc.p1{background:radial-gradient(circle at 35% 30%,#fff3a0,#ffc93c 55%,#d99a00)}
 .disc.p2{background:radial-gradient(circle at 35% 30%,#ffb0b0,#ff5a5a 55%,#c42b2b)}
 .disc.win{box-shadow:0 0 0 4px #fff,0 0 14px 6px #fff;animation:dropin .45s both,pulse .7s .45s infinite alternate}
@@ -217,7 +217,7 @@ input.num{font-size:34px;width:140px;text-align:center;border:4px solid var(--c1
   <div class="bar" id="bar"></div>
   <div id="view"></div>
 </div>
-<div id="modal" hidden></div>
+<div id="dlghost" hidden></div>
 
 <script>
 'use strict';
@@ -713,7 +713,7 @@ function toon(o){
   } else {
     if(!o.noSide) torso+=`<path d="M33.5 92 L38 134 M86.5 92 L82 134" stroke="${K.trim}" stroke-width="${o.kit_wide||5.4}" stroke-linecap="round"/>`;
     if(back){
-      torso+=`<text x="60" y="84" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="10" letter-spacing="1.5" fill="${o.numCol||K.trim}">${o.name||''}</text><text x="60" y="118" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="34" fill="${o.numCol||K.trim}">${o.no??''}</text>`;
+      torso+=`<text x="60" y="84" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="10" letter-spacing="1.5" fill="${o.numCol||K.trim}">${o.name||''}</text><text x="60" y="118" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="34" fill="${o.numCol||K.trim}">${o.no==null?'':o.no}</text>`;
     } else if(o.star){
       torso+=`<g transform="translate(60 104)"><circle r="14" fill="#fff" stroke="${ink}" stroke-width="1.8"/>
         <path d="M0 0 L0 -14 A14 14 0 0 0 -14 0Z" fill="#2a5bd7"/><path d="M0 0 L0 14 A14 14 0 0 0 14 0Z" fill="#2a5bd7"/>
@@ -1274,8 +1274,8 @@ function endArcade(){
   if(newBest) S.arcadeBest=A.score;
   S.points+=A.coins; save(); updBar(); Snd.play(win?'win':'lose');
   const t=tokens();
-  const ov=document.createElement('div'); ov.className='overlay'; ov.id='arcadeEnd';
-  ov.innerHTML=`<div class="card modal">${figHTML(win?'cheer':'sad')}
+  const ov=document.createElement('div'); ov.className='gamedlg'; ov.id='arcadeEnd';
+  ov.innerHTML=`<div class="card dlgcard">${figHTML(win?'cheer':'sad')}
     <h1>${win?'Great run, Oa!':'Game over!'}</h1>
     <div class="big-n" style="font-size:64px;color:var(--c1);font-weight:900">${A.score}</div><div class="line">Arcade score</div>
     ${newBest?'<div class="newhi">🏆 New arcade best!</div>':`<div class="line">Arcade best: ${S.arcadeBest}</div>`}
@@ -1307,8 +1307,8 @@ function startBtn(act,label,v=''){
   return `<button class="big" style="--bc:#ffd23f;justify-content:center" data-a="${act}" ${v?`data-v="${v}"`:''}>${label} <small>uses 1 token (you have ${tokens()})</small></button>`;
 }
 function endOverlay(inner){
-  const ov=document.createElement('div'); ov.className='overlay'; ov.id='arcadeEnd';
-  ov.innerHTML=`<div class="card modal">${inner}</div>`; document.body.appendChild(ov);
+  const ov=document.createElement('div'); ov.className='gamedlg'; ov.id='arcadeEnd';
+  ov.innerHTML=`<div class="card dlgcard">${inner}</div>`; document.body.appendChild(ov);
 }
 function spendToken(){ if(tokens()<1) return false; S.spent++; save(); updBar(); return true; }
 function viewGames(){
@@ -1572,8 +1572,8 @@ function c4End(me){
 }
 
 /* ---------- Modal + parent area ---------- */
-function modal(html){ const m=$('#modal'); m.innerHTML=`<div class="overlay" data-close="1"><div class="card modal">${html}</div></div>`; m.hidden=false; }
-function closeModal(){ const m=$('#modal'); m.hidden=true; m.innerHTML=''; }
+function modal(html){ const m=$('#dlghost'); m.innerHTML=`<div class="gamedlg" data-close="1"><div class="card dlgcard">${html}</div></div>`; m.hidden=false; }
+function closeModal(){ const m=$('#dlghost'); m.hidden=true; m.innerHTML=''; }
 function parentGate(){
   const a=rnd(6,9), b=rnd(6,9); window.__gate=a+b;
   modal(`<h2 style="color:var(--ink);text-shadow:none">For grown-ups</h2><div class="line">What is ${a} + ${b}?</div>
