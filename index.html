@@ -710,18 +710,19 @@ function toon(o){
       +P('M48 58 L60 118 L72 58Z','#fff')+P('M60 74 l-5 8 l3 34 l2 6 l2 -6 l3 -34z','#c8202a')
       +`<path d="M48 58 L60 100 L40 150 M72 58 L60 100 L80 150" stroke="${ink}" stroke-width="1.8" fill="none"/>`;
   } else {
-    torso+=`<path d="M34 100 L38 134 M86 100 L82 134" stroke="${K.trim}" stroke-width="3.4" stroke-linecap="round"/>`;
+    torso+=`<path d="M33.5 92 L38 134 M86.5 92 L82 134" stroke="${K.trim}" stroke-width="${o.kit_wide||5.4}" stroke-linecap="round"/>`;
     if(back){
       torso+=`<text x="60" y="84" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="10" letter-spacing="1.5" fill="${o.numCol||K.trim}">${o.name||''}</text><text x="60" y="118" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="34" fill="${o.numCol||K.trim}">${o.no??''}</text>`;
     } else if(o.star){
       torso+=`<g transform="translate(60 104)"><circle r="14" fill="#fff" stroke="${ink}" stroke-width="1.8"/>
         <path d="M0 0 L0 -14 A14 14 0 0 0 -14 0Z" fill="#2a5bd7"/><path d="M0 0 L0 14 A14 14 0 0 0 14 0Z" fill="#2a5bd7"/>
         <path d="M0 -20 L5 -6 L19 -6 L8 3 L12 17 L0 8 L-12 17 L-8 3 L-19 -6 L-5 -6Z" fill="#fff" stroke="${ink}" stroke-width="1.8" stroke-linejoin="round"/></g>
-        <path d="M74 80 l8 0 l0 8 q-4 4.5 -8 0z" fill="#f7c82a" stroke="${ink}" stroke-width="1.4" stroke-linejoin="round"/>`;
+        `;
     } else if(o.emirates){
       torso+=`<g transform="translate(76 86)"><circle r="6.5" fill="#f6d046" stroke="#8a6a00" stroke-width="1.4"/><circle r="4.3" fill="#fff"/><path d="M-3 0 H3" stroke="#2a5bd7" stroke-width="2"/></g>
         <text x="58" y="112" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="9" fill="${K.trim}" textLength="40" lengthAdjust="spacingAndGlyphs">Fly Emirates</text>`;
     }
+    if(o.kitBadge!==false && !o.suit && !back && !o.emirates) torso+=`<path d="M70 80 h11 v9 q0 5 -5.5 8 q-5.5 -3 -5.5 -8z" fill="#f7c82a" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/><path d="M77 82 l-4.2 7 h3.4 l-2 6.5 l5.6 -8 h-3.4z" fill="#e1262c" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
     if(o.keeperLine) torso+=`<path d="M50 134 L56 82 M70 134 L64 82" stroke="${K.dark}" stroke-width="2.6" opacity=".45"/>`;
     torso+=`<path d="M48 58 Q60 78 72 58" fill="${sk}" stroke="${ink}" stroke-width="${lw}"/><path d="M47 58 Q60 80 73 58" fill="none" stroke="${K.trim}" stroke-width="4" stroke-linecap="round"/>`;
   }
@@ -737,6 +738,8 @@ function toon(o){
     short:P('M41 24 Q38 2 60 1 Q82 2 79 24 Q74 13 60 12 Q46 13 41 24Z',hc)+`<path d="M48 7 Q60 2 72 7" stroke="${hl}" stroke-width="2" fill="none" opacity=".6" stroke-linecap="round"/>`,
     slick:P('M40 26 Q36 0 62 0 Q84 2 80 26 Q74 12 60 12 Q46 12 40 26Z',hc)+`<path d="M46 6 Q62 -1 76 8" stroke="${hl}" stroke-width="2" fill="none" opacity=".6"/>`,
     spiky:spikes([41,26,38,10,46,13,45,-1,54,8,60,-4,66,8,75,-1,74,13,82,10,79,26,74,15,60,13,46,15],hc),
+    notch:P('M41 26 L38 12 Q38 2 44 0 L43 -10 L50 -4 L52 -13 L58 -5 L61 -14 L66 -5 L71 -13 L72 -4 L78 -10 L77 0 Q84 3 82 14 L79 26 Q75 9 60 8 Q45 9 41 26Z',hc)+`<path d="M48 4 Q60 -1 74 4" stroke="${hl}" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>`,
+    slickpony:P('M40 27 Q35 1 61 -1 Q84 1 81 27 Q76 8 60 7 Q45 8 40 27Z',hc)+`<path d="M46 5 Q62 -3 77 6" stroke="${hl}" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>`,
     crown:spikes([41,26,40,8,47,12,48,-1,55,8,60,-2,65,8,72,-1,73,12,80,8,79,26,74,15,60,13,46,15],hc),
     redspike:spikes([41,26,36,6,47,12,46,-8,55,5,60,-14,66,5,74,-8,73,12,84,6,79,26,74,15,60,13,46,15],hc),
     swept:P('M40 28 Q34 4 58 -1 Q86 -2 82 24 L78 28 Q76 17 64 15 Q70 20 62 24 Q52 20 44 30Z',hc)+`<path d="M46 6 Q60 -2 76 6" stroke="#fff" stroke-width="2.2" opacity=".5" fill="none"/>`,
@@ -763,21 +766,24 @@ function toon(o){
       : mood==='think'
       ? `<path d="M43 17 Q50 13 58 17 M62 14 Q70 8 77 12" stroke="${browCol}" stroke-width="3.2" stroke-linecap="round" fill="none"/>`
       : `<path d="M42.5 ${kid?14.5:17.5} Q50 ${kid?8.5:12.5} 58 ${kid?14.5:17.5} M77.5 ${kid?14.5:17.5} Q70 ${kid?8.5:12.5} 62 ${kid?14.5:17.5}" stroke="${browCol}" stroke-width="${kid?2.8:3.4}" stroke-linecap="round" fill="none"/>`;
-    const nose=`<path d="M60 22 L57.5 33 Q60 35.5 63.5 33" fill="none" stroke="${sk3}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 22 L63.6 33" stroke="${sk2}" stroke-width="1.2" opacity=".7"/>`;
+    const nose=o.sharp?`<path d="M60 20 L56.5 34 Q60 36.5 64.5 34" fill="none" stroke="${sk3}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 20 L64.8 33" stroke="${sk2}" stroke-width="1.3" opacity=".8"/>`:`<path d="M60 22 L57.5 33 Q60 35.5 63.5 33" fill="none" stroke="${sk3}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 22 L63.6 33" stroke="${sk2}" stroke-width="1.2" opacity=".7"/>`;
     const gap=o.gap?`<rect x="59.2" y="38.6" width="1.6" height="5.2" fill="#6e1624"/>`:'';
     const mouth = up
       ? `<path d="M45 36.5 Q60 58 75 36.5Z" fill="#6e1624" stroke="${ink}" stroke-width="1.8" stroke-linejoin="round"/><path d="M47 37.2 Q60 41.5 73 37.2 L72 42 Q60 46.5 48 42Z" fill="#fff"/>${gap}<path d="M52 49 Q60 43.5 68 49 Q60 55 52 49Z" fill="#e0646f"/>`
       : sad ? `<path d="M50 43 Q60 36.5 70 43" fill="none" stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>`
       : mood==='think' ? `<ellipse cx="63" cy="40.5" rx="4.4" ry="3.4" fill="#6e1624" stroke="${ink}" stroke-width="1.8"/>`
+      : o.smirk ? `<path d="M52 38.5 Q61 41 71 37" fill="none" stroke="${ink}" stroke-width="1.9" stroke-linecap="round"/><path d="M72 36.5 q2 -1 2.6 -3" fill="none" stroke="${ink}" stroke-width="1.6" stroke-linecap="round"/>`
       : `<path d="M47 37 Q60 48 73 37 Q60 40.5 47 37Z" fill="#6e1624" stroke="${ink}" stroke-width="1.8" stroke-linejoin="round"/><path d="M48.5 37.6 Q60 42 71.5 37.6 L70.5 42 Q60 46.5 49.5 42Z" fill="#fff"/>${gap}<path d="M53 44.5 Q60 41 67 44.5 Q60 48.5 53 44.5Z" fill="#e0646f"/>`;
     const facial=(o.beard?P('M43 30 Q44 50 60 54 Q76 50 77 30 Q72 42 60 42 Q48 42 43 30Z',hairCol,1.6):'')
       +(o.mustache?P('M50 36 Q60 30 70 36 Q60 39 50 36Z',hairCol,1.4):'')
       +(o.glasses?`<g fill="rgba(190,225,255,.28)" stroke="${ink}" stroke-width="2"><rect x="42" y="17.5" width="17" height="12.5" rx="4"/><rect x="61" y="17.5" width="17" height="12.5" rx="4"/></g><path d="M59 22 h2" stroke="${ink}" stroke-width="2"/>`:'')
+      +(o.shades?`<g stroke="#f2b81c" stroke-width="2.8" stroke-linejoin="round"><path d="M37 17 L56 14.5 L61 19.5 L57 30 L42 30.5 L35 24Z" fill="rgba(120,205,235,.75)"/><path d="M83 17 L64 14.5 L59 19.5 L63 30 L78 30.5 L85 24Z" fill="rgba(120,205,235,.75)"/><path d="M36 18.5 L33 18.5 M84 18.5 L87 18.5" stroke-linecap="round"/></g><path d="M41 19.5 L52 18.5 M65 18.5 L76 19.5" stroke="#fff" stroke-width="1.4" opacity=".6" stroke-linecap="round"/>`:'')
       +(o.cheek?`<ellipse cx="46" cy="33" rx="4.6" ry="2.8" fill="#e0604a" opacity=".22"/><ellipse cx="74" cy="33" rx="4.6" ry="2.8" fill="#e0604a" opacity=".22"/>`:'');
     faceFeat=brow+eyeL+eyeR+nose+mouth+facial;
   }
   const neck=P('M53 42 L53 60 Q60 66 67 60 L67 42Z',sk2);
-  const head=`${ears}${face}${back?'':''}${faceFeat}${H}${back?P('M40 24 Q36 0 60 -2 Q84 0 80 24 Q82 40 66 46 Q60 48 54 46 Q38 40 40 24Z',hc)+(o.style==='hightop'?H:''):''}`;
+  const hb=o.style==='slickpony'?P('M76 8 Q100 6 100 40 Q100 62 90 74 Q94 52 88 38 Q84 24 77 24Z',hc)+`<path d="M96 30 Q97 50 92 64" stroke="${hl}" stroke-width="1.6" fill="none" opacity=".5"/>`:'';
+  const head=`${hb}${ears}${face}${back?'':''}${faceFeat}${H}${back?P('M40 24 Q36 0 60 -2 Q84 0 80 24 Q82 40 66 46 Q60 48 54 46 Q38 40 40 24Z',hc)+(o.style==='hightop'?H:''):''}`;
   const legT = kid?'':'translate(0 284) scale(1 .84) translate(0 -284)';
   const body=`<ellipse cx="60" cy="285" rx="38" ry="4" fill="#000" opacity=".16"/><g transform="${legT}">${legs}</g>${shorts}${armR}${armL}${torso}${neck}`;
   const bodyT = kid ? `translate(60 284) scale(.8) translate(-60 -284)` : '';
@@ -802,10 +808,10 @@ const KIT = {
   coach: {shirt:'#8e949c', dark:'#6b7179', trim:'#ffffff', shorts:'#8e949c', sock:'#23232b'}
 };
 const PLAYERS = {
-  shakes:  {n:'Shakes', no:10, skin:'#a2693f', hair:'#15110f', style:'crown'},
+  shakes:  {n:'Shakes', no:10, skin:'#bf8250', hair:'#15110f', style:'notch', smirk:1, sharp:1},
   klaus:   {n:'Klaus', no:2, skin:'#f2c79a', hair:'#f1c93a', style:'swept', eye:'#2c7fd6'},
   joe:     {n:'Cool Joe', no:7, skin:'#b97848', hair:'#15110f', style:'afro', clip:1},
-  matador: {n:'El Matador', no:20, skin:'#e3ae80', hair:'#15110f', style:'slick', mustache:1},
+  matador: {n:'El Matador', no:20, skin:'#c98d5c', hair:'#15110f', style:'slickpony', shades:1, sharp:1},
   rasta:   {n:'Dancing Rasta', no:9, skin:'#6f432a', hair:'#15110f', style:'dreads', beard:1, band:1},
   tiger:   {n:'Twisting Tiger', no:16, skin:'#e8b88a', hair:'#15110f', style:'goggles'},
   bo:      {n:'Big Bo', no:1, skin:'#d79a68', hair:null, style:'bald', kit:'keeper', big:1, longSleeve:1, keeperLine:1},
@@ -820,7 +826,7 @@ const PLAYERS = {
 function player(id,mood='happy'){
   const d=PLAYERS[id]; if(!d) return '';
   const kind=d.kit||'home';
-  return toon(Object.assign({},d,{mood,name:d.n,kit:KIT[kind],star:kind==='home',shortNoCol:kind==='keeper'?'#2a2a33':'#fff'}));
+  return toon(Object.assign({},d,{mood,name:d.n,kit:KIT[kind],star:false,shortNoCol:kind==='keeper'?'#2a2a33':'#fff'}));
 }
 const ssName = id => PLAYERS[id].n;
 const bookOpen = i => S.unlockAll || BOOKS[i].shelf==='ss' || i===0 || !!S.booksDone[BOOKS[i-1].id];
