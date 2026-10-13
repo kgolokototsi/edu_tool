@@ -8,7 +8,7 @@ Tap anywhere once to start the music.
 ## What is in it
 
 - **Maths** (adaptive; 8 out of 10 right opens the next topic): counting and grouping, skip counting (2s, 5s, 10s) and doubling, adding to 10, adding to 20, two-digit adding with no carrying, taking away, times tables (2, 5, 10, then 3 and 4). Questions get harder as he gets them right.
-- **Reading:** eight colourful early-reader story books in four levels. New words are highlighted in yellow, tapping any word says it, and finished books add words to "My Words". Some stories star Oa.
+- **Reading:** seven Supa Strikas stories (player and team names, shirt numbers, a world tour of the Super League teams, and one where Oa trains with them) plus eight early-reader story books. New words are highlighted in yellow, tapping any word says it, and finished books add words to "My Words". Some stories star Oa.
 - **Three ways to answer:** type it, choose it, or drag it (including dragging things into baskets to make groups).
 - **Points and high score:** first-try answers score 10 (plus streak bonus), second try 5. A round's score is multiplied by accuracy (×1 at 90%+, ×0.8 at 70%+, otherwise ×0.6), so wrong answers lower the high score. Every 50 points earns an arcade token.
 - **Games** (each play uses 1 token, earned with points):
@@ -27,6 +27,7 @@ Unlock all topics and books, give a bonus token, or reset progress. Progress is 
 
 Everything lives in `index.html`:
 
+- Supa Strikas players and kit colours: `PLAYERS` and `KIT` (art tokens look like `SS:shakes`, `SS:joe:cheer`). These are simple original drawings for private family use, not official art.
 - Stories: the `BOOKS` array (pages of text plus emoji pictures, `OA` for Oa, a `quiz` of three fill-in-the-gap questions).
 - Maths: one generator per topic in `GEN`; topics are listed in `TOPICS`.
 - Oa's look: `CONFIG.character` colours and the `oa()` drawing. Token cost per game: `COST`.

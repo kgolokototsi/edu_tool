@@ -662,11 +662,168 @@ const BOOKS = [
       ['Oa pays with the coin. He has a big smile.',['OA:cheer','COIN','😀']] ],
     quiz:[ ['Oa has a gold {{slot}}.','coin',['coin','cake','cap']],
            ['Oa picks some {{slot}} and a cheese stick.','nuts',['nuts','cake','coin']],
-           ['The cake is too {{slot}} for Oa.','sweet',['sweet','green','loud']] ] }
+           ['The cake is too {{slot}} for Oa.','sweet',['sweet','green','loud']] ] },
+  /* ===== Supa Strikas shelf (private family use) ===== */
+  { id:'ss1', shelf:'ss', title:'Meet the Supa Strikas', lvl:5, cover:['SS:shakes','SS:klaus'],
+    words:['shakes','klaus','joe','matador','rasta','tiger','bo','blok','coach','strikas','supa','number','team'],
+    pages:[
+      ['This is the Supa Strikas team!',['SS:shakes:cheer','SS:klaus','SS:joe','SS:rasta']],
+      ['Shakes is a striker. He wears number 10, just like Oa!',['SS:shakes','OA']],
+      ['Klaus is the Supa Sub. He wears number 2.',['SS:klaus']],
+      ['Cool Joe is from Brazil. He can cross the ball. He wears number 7.',['SS:joe','⚽']],
+      ['El Matador wears number 20. He is a striker from Spain.',['SS:matador']],
+      ['Twisting Tiger is fast, fast, fast! He wears number 16.',['SS:tiger','💨']],
+      ['Big Bo is the goalie. He wears number 1.',['SS:bo','🧤']],
+      ['Blok is big. He is a strong defender. He wears number 55.',['SS:blok','🛡️']],
+      ['Coach Ledige is the coach. “Go, team, go!”',['SS:coach','📣']] ],
+    quiz:[ ['{{slot}} wears number 10, just like Oa.','shakes',['shakes','klaus','blok']],
+           ['{{slot}} is the goalie.','bo',['bo','joe','blok']],
+           ['The Supa Sub is {{slot}}.','klaus',['klaus','tiger','shakes']] ] },
+  { id:'ss2', shelf:'ss', title:'Shakes and the Bicycle Kick', lvl:5, cover:['SS:shakes','⚽'],
+    words:['shakes','bicycle','kick','jump','flip','invincible','united','skarra','score','crowd'],
+    pages:[
+      ['It is match day. Supa Strikas play Invincible United.',['SS:shakes','⚽','🏟️']],
+      ['The crowd is loud. Skarra wants the ball.',['📣','SS:skarra']],
+      ['Cool Joe passes the ball to Shakes.',['SS:joe','⚽','SS:shakes']],
+      ['Skarra runs fast. He tries to stop Shakes.',['SS:skarra','💨']],
+      ['Shakes jumps up! Up, up, up!',['SS:shakes:cheer','⬆️']],
+      ['He flips in the air. It is a bicycle kick!',['SS:shakes','🔄','⚽']],
+      ['GOAL! Shakes scores! The crowd goes wild!',['SS:shakes:cheer','🥅','🎉']] ],
+    quiz:[ ['Supa Strikas play {{slot}} United.','invincible',['invincible','united','crowd']],
+           ['Cool Joe passes the ball to {{slot}}.','shakes',['shakes','skarra','blok']],
+           ['Shakes does a {{slot}} kick.','bicycle',['bicycle','invincible','jump']] ] },
+  { id:'ss3', shelf:'ss', title:'Klaus the Supa Sub', lvl:5, cover:['SS:klaus','🔄'],
+    words:['klaus','sub','bench','warm','coach','ledige','sprint','great','shout'],
+    pages:[
+      ['Klaus sits on the bench. He is the Supa Sub.',['SS:klaus','🪑']],
+      ['“I want to play!” says Klaus.',['SS:klaus','💭']],
+      ['Coach Ledige looks at the team. “Klaus, warm up!”',['SS:coach','SS:klaus']],
+      ['Klaus does a big sprint. He runs, runs, runs!',['SS:klaus:cheer','💨']],
+      ['Klaus comes on! He kicks the ball. GOAL!',['SS:klaus:cheer','⚽','🥅']],
+      ['“Great job, Klaus!” shout the team. Klaus is glad.',['SS:klaus:cheer','SS:shakes','SS:joe']] ],
+    quiz:[ ['Klaus sits on the {{slot}}.','bench',['bench','coach','ball']],
+           ['Coach {{slot}} says, “Klaus, warm up!”','ledige',['ledige','shakes','skarra']],
+           ['Klaus is the Supa {{slot}}.','sub',['sub','bo','joe']] ] },
+  { id:'ss4', shelf:'ss', title:'Big Bo Saves the Day', lvl:5, cover:['SS:bo','🧤'],
+    words:['bo','goalie','gloves','dive','save','skarra','shoots','tall','wall','penalty'],
+    pages:[
+      ['Big Bo is the goalie. He has big green gloves.',['SS:bo','🧤']],
+      ['It is a penalty! Skarra will shoot.',['SS:skarra','⚽']],
+      ['Skarra looks left. Skarra looks right.',['SS:skarra','↔️']],
+      ['Bo stands tall like a wall.',['SS:bo','🧱']],
+      ['Skarra shoots! Bo dives… SAVE!',['SS:bo:cheer','⚽','🧤']],
+      ['The Supa Strikas shout, “Big Bo! Big Bo!”',['SS:bo:cheer','SS:shakes','SS:rasta','SS:blok']],
+      ['Oa jumps up and cheers too!',['OA:cheer','🎉']] ],
+    quiz:[ ['Big Bo has big green {{slot}}.','gloves',['gloves','wall','boots']],
+           ['Skarra shoots and Bo makes a {{slot}}.','save',['save','goal','kick']],
+           ['Big Bo is the {{slot}}.','goalie',['goalie','coach','sub']] ] },
+  { id:'ss5', shelf:'ss', title:'Cool Joe Crosses the Ball', lvl:5, cover:['SS:joe','🇧🇷'],
+    words:['joe','brazil','cross','wing','winger','curl','head','blok','tiger','left'],
+    pages:[
+      ['Cool Joe is from Brazil. He is a winger.',['SS:joe','🇧🇷']],
+      ['He runs down the wing. Fast, fast, fast!',['SS:joe','💨']],
+      ['Twisting Tiger runs in the middle.',['SS:tiger','💨']],
+      ['Cool Joe sees Tiger. He gets ready to cross.',['SS:joe','👀']],
+      ['Joe curls the ball in the air. What a cross!',['SS:joe:cheer','⚽','🌈']],
+      ['Tiger jumps and heads the ball. GOAL!',['SS:tiger:cheer','⚽','🥅']],
+      ['“Nice one, Cool Joe!” says Tiger.',['SS:joe:cheer','SS:tiger:cheer']] ],
+    quiz:[ ['Cool Joe is from {{slot}}.','brazil',['brazil','spain','japan']],
+           ['Joe is a {{slot}}.','winger',['winger','goalie','coach']],
+           ['Tiger heads the ball. {{slot}}!','goal',['goal','save','cross']] ] },
+  { id:'ss6', shelf:'ss', title:'The Big League Bus Trip', lvl:6, cover:['🚌','🌍'],
+    words:['league','bus','trip','hydra','cosmos','azul','orion','nakama','colossus','sultans','grimm','tank','iron','france','japan','greece','mexico'],
+    pages:[
+      ['The Supa Strikas get on the team bus. It is a big trip!',['🚌','SS:shakes','SS:klaus']],
+      ['First stop is Mexico. They play Azul FC.',['🇲🇽','⚽']],
+      ['Next is France. They play Hydra FC and Orion FC.',['🇫🇷','⚽']],
+      ['Then Germany. Iron Tank FC is big and strong!',['🇩🇪','🛡️']],
+      ['In Greece they play Colossus FC.',['🇬🇷','🏛️']],
+      ['In Japan they play Nakama FC. Twisting Tiger is glad to be home.',['🇯🇵','SS:tiger:cheer']],
+      ['They play Sultans FC, Grimm FC and Cosmos FC too.',['🏟️','⚽']],
+      ['What a trip! The bus is full of happy Supa Strikas.',['🚌','SS:rasta:cheer','SS:joe:cheer','OA:cheer']] ],
+    quiz:[ ['In Mexico they play {{slot}} FC.','azul',['azul','hydra','orion']],
+           ['{{slot}} Tank FC is big and strong.','iron',['iron','cosmos','grimm']],
+           ['Twisting Tiger is from {{slot}}.','japan',['japan','france','greece']] ] },
+  { id:'ss7', shelf:'ss', title:'Oa Plays with the Supa Strikas', lvl:6, cover:['OA','SS:shakes'],
+    words:['train','training','warm','drill','pass','snack','water','pen','smile','teammate','captain','rasta'],
+    pages:[
+      ['Oa gets to train with the Supa Strikas!',['OA:cheer','SS:shakes','SS:klaus']],
+      ['Oa packs his bag. He has his snack and his insulin pen.',['OA','🎒','PEN']],
+      ['Dancing Rasta is the captain. He says, “Welcome, Oa!”',['SS:rasta:cheer','OA']],
+      ['Coach Ledige blows his whistle. “Pass, pass, shoot!”',['SS:coach','📣']],
+      ['Oa passes to Shakes. Shakes passes to Cool Joe.',['OA','SS:shakes','SS:joe']],
+      ['Joe crosses it back. Oa kicks it. GOAL!',['OA:cheer','⚽','🥅']],
+      ['Everyone claps. “Number 10 is a star!” says Shakes.',['SS:shakes:cheer','OA:cheer','👏']],
+      ['Oa has a snack and some water. What a great day!',['OA:cheer','🥜','💧']] ],
+    quiz:[ ['{{slot}} Rasta is the captain.','dancing',['dancing','twisting','cool']],
+           ['Oa packs his snack and his insulin {{slot}}.','pen',['pen','cap','ball']],
+           ['Oa passes to {{slot}}.','shakes',['shakes','skarra','bo']] ] }
 ];
-const bookOpen = i => S.unlockAll || i===0 || !!S.booksDone[BOOKS[i-1].id];
+
+/* ---------- Supa Strikas (private family use): original simple drawings, not official art ---------- */
+const KIT = { home:{shirt:'#f5c518',trim:'#161616',shorts:'#161616'}, keeper:{shirt:'#2fbf71',trim:'#0e5a34',shorts:'#0e5a34'},
+              rival:{shirt:'#2b6be0',trim:'#ffffff',shorts:'#ffffff'}, coach:{shirt:'#2a2a33',trim:'#f5c518',shorts:'#2a2a33'} };
+const PLAYERS = {
+  shakes:  {n:'Shakes', no:10, skin:'#8a5a3b', hair:'#111', style:'short'},
+  klaus:   {n:'Klaus', no:2, skin:'#f1c9a0', hair:'#e8c34a', style:'spiky'},
+  joe:     {n:'Cool Joe', no:7, skin:'#b9794e', hair:'#111', style:'afro'},
+  matador: {n:'El Matador', no:20, skin:'#e0b088', hair:'#111', style:'slick'},
+  rasta:   {n:'Dancing Rasta', no:9, skin:'#7a4a2e', hair:'#111', style:'dreads'},
+  tiger:   {n:'Twisting Tiger', no:16, skin:'#f0cfa8', hair:'#111', style:'spiky'},
+  bo:      {n:'Big Bo', no:1, skin:'#d9a47a', hair:'#6b3f1d', style:'short', kit:'keeper', big:1},
+  blok:    {n:'Blok', no:55, skin:'#f0cfa8', hair:'#d8b24a', style:'short', big:1},
+  shaw:    {n:'North Shaw', no:8, skin:'#e6b98f', hair:'#6b3f1d', style:'short'},
+  eagle:   {n:'Eagle Eye', no:4, skin:'#c68a5e', hair:'#111', style:'short'},
+  rizo:    {n:'Rizo', no:3, skin:'#f1c9a0', hair:'#6b3f1d', style:'spiky'},
+  skarra:  {n:'Skarra', no:null, skin:'#8a5a3b', hair:'#111', style:'spiky', kit:'rival', grumpy:1},
+  coach:   {n:'Coach Ledige', no:null, skin:'#8a5a3b', hair:'#bbb', style:'short', kit:'coach'},
+  rival:   {n:'Rival', no:null, skin:'#d9a47a', hair:'#222', style:'short', kit:'rival', grumpy:1}
+};
+function player(id,mood){
+  const d=PLAYERS[id]; if(!d) return '';
+  const k=KIT[d.kit||'home'], ink='#1a1420', w=d.big?1.18:1;
+  const hair={
+    short:`<path d="M30 40 C28 18 42 10 50 10 C58 10 72 18 70 40 C66 30 58 26 50 26 C42 26 34 30 30 40Z" fill="${d.hair}"/>`,
+    spiky:`<path d="M30 42 L28 20 L38 28 L42 10 L50 24 L58 10 L62 28 L72 20 L70 42 C66 32 58 28 50 28 C42 28 34 32 30 42Z" fill="${d.hair}"/>`,
+    afro:`<circle cx="34" cy="26" r="13" fill="${d.hair}"/><circle cx="50" cy="19" r="15" fill="${d.hair}"/><circle cx="66" cy="26" r="13" fill="${d.hair}"/><circle cx="30" cy="38" r="8" fill="${d.hair}"/><circle cx="70" cy="38" r="8" fill="${d.hair}"/>`,
+    slick:`<path d="M29 42 C26 18 42 8 52 9 C66 10 74 22 71 42 C68 30 60 24 48 25 C38 26 31 32 29 42Z" fill="${d.hair}"/><path d="M40 14 Q52 10 64 18" stroke="#fff" stroke-width="2" opacity=".35" fill="none"/>`,
+    dreads:`<path d="M29 42 C26 18 40 8 50 8 C60 8 74 18 71 42 C66 30 58 26 50 26 C42 26 34 30 29 42Z" fill="${d.hair}"/>`+[26,33,67,74].map((x,i)=>`<rect x="${x-3}" y="30" width="6" height="${28-i%2*6}" rx="3" fill="${d.hair}"/>`).join('')+`<path d="M32 12 H68 V19 H32Z" fill="#2fbf71"/><path d="M32 19 H68 V25 H32Z" fill="#f5c518" opacity=".95"/>`
+  }[d.style];
+  const eyeY=44, brow = (mood==='sad'||d.grumpy)
+    ? `<path d="M36 36 L46 40 M64 36 L54 40" stroke="${ink}" stroke-width="3.2" stroke-linecap="round"/>`
+    : `<path d="M36 38 Q41 34 46 38 M54 38 Q59 34 64 38" stroke="${ink}" stroke-width="3" stroke-linecap="round" fill="none"/>`;
+  const mouth = mood==='sad'||d.grumpy ? `<path d="M42 58 Q50 53 58 58" stroke="${ink}" stroke-width="3" fill="none" stroke-linecap="round"/>`
+    : `<path d="M39 54 Q50 66 61 54Z" fill="#6e1624" stroke="${ink}" stroke-width="2.4" stroke-linejoin="round"/><path d="M41 55 Q50 59 59 55 L58 58 Q50 61 42 58Z" fill="#fff"/>`;
+  const num = d.no!=null ? `<text x="50" y="100" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="22" fill="${k.trim}" stroke="${k.shirt}" stroke-width=".5">${d.no}</text>` : '';
+  const star = d.kit==='coach' ? `<text x="50" y="100" text-anchor="middle" font-size="18">📋</text>` : '';
+  const arms = mood==='cheer'
+    ? `<path d="M30 80 L14 56" stroke="${ink}" stroke-width="15" stroke-linecap="round"/><path d="M30 80 L14 56" stroke="${k.shirt}" stroke-width="10" stroke-linecap="round"/><circle cx="12" cy="52" r="8" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/>
+       <path d="M70 80 L86 56" stroke="${ink}" stroke-width="15" stroke-linecap="round"/><path d="M70 80 L86 56" stroke="${k.shirt}" stroke-width="10" stroke-linecap="round"/><circle cx="88" cy="52" r="8" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/>`
+    : `<path d="M30 80 L20 108" stroke="${ink}" stroke-width="15" stroke-linecap="round"/><path d="M30 80 L20 108" stroke="${k.shirt}" stroke-width="10" stroke-linecap="round"/><circle cx="19" cy="113" r="8" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/>
+       <path d="M70 80 L80 108" stroke="${ink}" stroke-width="15" stroke-linecap="round"/><path d="M70 80 L80 108" stroke="${k.shirt}" stroke-width="10" stroke-linecap="round"/><circle cx="81" cy="113" r="8" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/>`;
+  return `<svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${d.n}"><g transform="translate(50 0) scale(${w} 1) translate(-50 0)">
+    <ellipse cx="50" cy="157" rx="30" ry="3.5" fill="#000" opacity=".15"/>
+    <rect x="35" y="118" width="12" height="26" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/><rect x="53" y="118" width="12" height="26" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/>
+    <rect x="33" y="136" width="16" height="12" rx="3" fill="${k.shirt}" stroke="${ink}" stroke-width="2.4"/><rect x="51" y="136" width="16" height="12" rx="3" fill="${k.shirt}" stroke="${ink}" stroke-width="2.4"/>
+    <path d="M30 148 h20 v8 h-24z M50 148 h20 l4 8 h-24z" fill="${ink}"/>
+    ${arms}
+    <path d="M30 76 Q50 70 70 76 L72 108 L72 124 L28 124 L28 108Z" fill="${k.shirt}" stroke="${ink}" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M28 108 H72 V126 Q50 132 28 126Z" fill="${k.shorts}" stroke="${ink}" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M42 74 Q50 84 58 74" fill="none" stroke="${k.trim}" stroke-width="5" stroke-linecap="round"/>
+    ${num}${star}
+    <circle cx="26" cy="46" r="6" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/><circle cx="74" cy="46" r="6" fill="${d.skin}" stroke="${ink}" stroke-width="2.4"/>
+    <ellipse cx="50" cy="44" rx="24" ry="27" fill="${d.skin}" stroke="${ink}" stroke-width="2.6"/>
+    ${hair}${brow}
+    <circle cx="41" cy="${eyeY}" r="4.4" fill="#fff" stroke="${ink}" stroke-width="2"/><circle cx="59" cy="${eyeY}" r="4.4" fill="#fff" stroke="${ink}" stroke-width="2"/>
+    <circle cx="42" cy="${eyeY+.6}" r="2.2" fill="${ink}"/><circle cx="60" cy="${eyeY+.6}" r="2.2" fill="${ink}"/>
+    ${mouth}
+  </g></svg>`;
+}
+const ssName = id => PLAYERS[id].n;
+const bookOpen = i => S.unlockAll || BOOKS[i].shelf==='ss' || i===0 || !!S.booksDone[BOOKS[i-1].id];
 const SCENE_BG = ['#bfe9ff,#fff5c2','#ffd6e8,#fff0f5','#d3f5d0,#f3ffe9','#e3d6ff,#f7f1ff','#ffe2c2,#fff6ea','#cbf3f0,#f1fffd'];
 function artItem(t){
+  if(t.startsWith('SS:')){ const [,id,m]=t.split(':'); return `<span>${player(id,m||'happy')}</span>`; }
   if(t==='PEN') return `<span>${penSVG()}</span>`;
   if(t==='COIN') return `<span>${coinSVG().replace('<svg','<svg style="height:.9em;width:.9em"')}</span>`;
   if(t.startsWith('OA')) return `<span>${oa(t.split(':')[1]||'happy')}</span>`;
@@ -919,13 +1076,18 @@ function viewMath(){
       <span class="star">${'★'.repeat(s)}<span class="off">${'★'.repeat(3-s)}</span></span></button>`; }).join('')}</div>`);
 }
 function viewRead(){
-  view(`<div class="head"><h2 style="flex:1;margin:0">Reading</h2><button class="btn alt" data-a="words">📚 My Words (${S.words.length})</button><button class="btn alt back" data-a="home">◀ Home</button></div>
-  <div class="grid">${BOOKS.map((b,i)=>{
+  const card=(b,i)=>{
     const open=bookOpen(i), done=S.booksDone[b.id];
     return `<button class="tcard ${open?'':'lock'}" ${open?`data-a="book" data-v="${i}"`:'data-a="locked"'}>
-      <span class="bookcover">${open?b.cover.map(artItem).join('').replace(/<svg/g,'<svg style="height:56px;width:auto"'):'🔒'}</span>
+      <span class="bookcover">${open?b.cover.map(artItem).join('').replace(/<svg/g,'<svg style="height:64px;width:auto"'):'🔒'}</span>
       <span class="tn">${b.title}</span><span class="lvl">Level ${b.lvl}</span>
-      <span class="star">${done?'★★★':'<span class="off">★★★</span>'}</span></button>`; }).join('')}</div>`);
+      <span class="star">${done?'★★★':'<span class="off">★★★</span>'}</span></button>`; };
+  const shelf=ss=>BOOKS.map((b,i)=>(!!b.shelf===ss)?card(b,i):'').join('');
+  view(`<div class="head"><h2 style="flex:1;margin:0">Reading</h2><button class="btn alt" data-a="words">📚 My Words (${S.words.length})</button><button class="btn alt back" data-a="home">◀ Home</button></div>
+  <div class="sub" style="max-width:1100px;margin:10px auto 0">⭐ Supa Strikas stories</div>
+  <div class="grid">${shelf(true)}</div>
+  <div class="sub" style="max-width:1100px;margin:20px auto 0">📖 Story books</div>
+  <div class="grid">${shelf(false)}</div>`);
 }
 function viewBook(){
   const bi=rd.bi, pi=rd.pi, b=BOOKS[bi], [text,art]=b.pages[pi], last=pi===b.pages.length-1;
