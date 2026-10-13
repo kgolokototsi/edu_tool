@@ -567,101 +567,98 @@ const BOOKS = [
     quiz:[ ['Oa has a gold {{slot}}.','coin',['coin','cake','cap']],
            ['Oa picks some {{slot}} and a cheese stick.','nuts',['nuts','cake','coin']],
            ['The cake is too {{slot}} for Oa.','sweet',['sweet','green','loud']] ] },
-  /* ===== Supa Strikas shelf (private family use) ===== */
-  { id:'ss1', shelf:'ss', title:'Meet the Supa Strikas', lvl:5, cover:['SS:shakes','SS:klaus'],
-    words:['shakes','klaus','joe','matador','rasta','tiger','bo','blok','coach','strikas','supa','number','team'],
+  /* ===== Supa Strikas shelf (private family use). Only players with confirmed likenesses: Shakes, El Matador, Twisting Tiger, Big Bo ===== */
+  { id:'ss1', shelf:'ss', title:'Meet the Supa Strikas', lvl:5, cover:['SS:shakes','SS:tiger'],
+    words:['shakes','matador','tiger','bo','supa','strikas','striker','goalie','number','team','fast'],
     pages:[
-      ['This is the Supa Strikas team!',['SS:shakes:cheer','SS:klaus','SS:joe','SS:rasta']],
+      ['This is the Supa Strikas team!',['SS:shakes:cheer','SS:matador','SS:tiger','SS:bo']],
       ['Shakes is a striker. He wears number 10, just like Oa!',['SS:shakes','OA']],
-      ['Klaus is the Supa Sub. He wears number 2.',['SS:klaus']],
-      ['Cool Joe is from Brazil. He can cross the ball. He wears number 7.',['SS:joe','⚽']],
-      ['El Matador wears number 20. He is a striker from Spain.',['SS:matador']],
+      ['El Matador is a striker too. He is from Spain. He wears number 20.',['SS:matador']],
       ['Twisting Tiger is fast, fast, fast! He wears number 16.',['SS:tiger','💨']],
-      ['Big Bo is the goalie. He wears number 1.',['SS:bo','🧤']],
-      ['Blok is big. He is a strong defender. He wears number 55.',['SS:blok','🛡️']],
-      ['Coach Ledige is the coach. “Go, team, go!”',['SS:coach','📣']] ],
-    quiz:[ ['{{slot}} wears number 10, just like Oa.','shakes',['shakes','klaus','blok']],
-           ['{{slot}} is the goalie.','bo',['bo','joe','blok']],
-           ['The Supa Sub is {{slot}}.','klaus',['klaus','tiger','shakes']] ] },
+      ['Big Bo is the goalie. He wears number 1. He is big and strong.',['SS:bo','🧤']],
+      ['Shakes, El Matador, Twisting Tiger and Big Bo. What a team!',['SS:shakes','SS:matador','SS:tiger','SS:bo']] ],
+    quiz:[ ['{{slot}} wears number 10, just like Oa.','shakes',['shakes','matador','tiger']],
+           ['Big Bo is the {{slot}}.','goalie',['goalie','striker','coach']],
+           ['Twisting {{slot}} is fast, fast, fast!','tiger',['tiger','matador','shakes']] ] },
   { id:'ss2', shelf:'ss', title:'Shakes and the Bicycle Kick', lvl:5, cover:['SS:shakes','⚽'],
-    words:['shakes','bicycle','kick','jump','flip','invincible','united','skarra','score','crowd'],
+    words:['shakes','bicycle','kick','jump','flip','invincible','united','score','crowd','matador'],
     pages:[
       ['It is match day. Supa Strikas play Invincible United.',['SS:shakes','⚽','🏟️']],
-      ['The crowd is loud. Skarra wants the ball.',['📣','SS:skarra']],
-      ['Cool Joe passes the ball to Shakes.',['SS:joe','⚽','SS:shakes']],
-      ['Skarra runs fast. He tries to stop Shakes.',['SS:skarra','💨']],
+      ['The crowd is loud. Everyone wants a goal.',['📣','👏']],
+      ['El Matador has the ball. He wants to score!',['SS:matador','⚽']],
+      ['But Shakes is free. “Pass it!” says Shakes.',['SS:shakes','☝️']],
+      ['El Matador passes the ball to Shakes.',['SS:matador','⚽','SS:shakes']],
       ['Shakes jumps up! Up, up, up!',['SS:shakes:cheer','⬆️']],
-      ['He flips in the air. It is a bicycle kick!',['SS:shakes','🔄','⚽']],
-      ['GOAL! Shakes scores! The crowd goes wild!',['SS:shakes:cheer','🥅','🎉']] ],
-    quiz:[ ['Supa Strikas play {{slot}} United.','invincible',['invincible','united','crowd']],
-           ['Cool Joe passes the ball to {{slot}}.','shakes',['shakes','skarra','blok']],
-           ['Shakes does a {{slot}} kick.','bicycle',['bicycle','invincible','jump']] ] },
-  { id:'ss3', shelf:'ss', title:'Klaus the Supa Sub', lvl:5, cover:['SS:klaus','🔄'],
-    words:['klaus','sub','bench','warm','coach','ledige','sprint','great','shout'],
+      ['He flips in the air. It is a bicycle kick! GOAL!',['SS:shakes:cheer','⚽','🥅']] ],
+    quiz:[ ['Supa Strikas play {{slot}} United.','invincible',['invincible','crowd','bicycle']],
+           ['El Matador passes the ball to {{slot}}.','shakes',['shakes','tiger','bo']],
+           ['Shakes does a {{slot}} kick.','bicycle',['bicycle','invincible','loud']] ] },
+  { id:'ss3', shelf:'ss', title:'Twisting Tiger is Fast', lvl:5, cover:['SS:tiger','💨'],
+    words:['tiger','twisting','fast','race','sprint','spin','defender','twist','zoom','wings'],
     pages:[
-      ['Klaus sits on the bench. He is the Supa Sub.',['SS:klaus','🪑']],
-      ['“I want to play!” says Klaus.',['SS:klaus','💭']],
-      ['Coach Ledige looks at the team. “Klaus, warm up!”',['SS:coach','SS:klaus']],
-      ['Klaus does a big sprint. He runs, runs, runs!',['SS:klaus:cheer','💨']],
-      ['Klaus comes on! He kicks the ball. GOAL!',['SS:klaus:cheer','⚽','🥅']],
-      ['“Great job, Klaus!” shout the team. Klaus is glad.',['SS:klaus:cheer','SS:shakes','SS:joe']] ],
-    quiz:[ ['Klaus sits on the {{slot}}.','bench',['bench','coach','ball']],
-           ['Coach {{slot}} says, “Klaus, warm up!”','ledige',['ledige','shakes','skarra']],
-           ['Klaus is the Supa {{slot}}.','sub',['sub','bo','joe']] ] },
+      ['Twisting Tiger is the fastest player on the team.',['SS:tiger','💨']],
+      ['“Let’s race!” says Tiger. Zoom! He sprints.',['SS:tiger:cheer','💨']],
+      ['A big defender comes. Tiger does a twist and a spin!',['SS:tiger','🌀']],
+      ['The defender is left behind. Tiger is too fast!',['SS:tiger','💨','😵']],
+      ['He passes the ball to Shakes. Shakes shoots. GOAL!',['SS:tiger','⚽','SS:shakes']],
+      ['“Nice one, Tiger!” shouts Big Bo.',['SS:bo:cheer','SS:tiger:cheer']] ],
+    quiz:[ ['Twisting Tiger is very {{slot}}.','fast',['fast','slow','sad']],
+           ['Tiger does a twist and a {{slot}}.','spin',['spin','sit','nap']],
+           ['“Nice one, Tiger!” shouts Big {{slot}}.','bo',['bo','matador','shakes']] ] },
   { id:'ss4', shelf:'ss', title:'Big Bo Saves the Day', lvl:5, cover:['SS:bo','🧤'],
-    words:['bo','goalie','gloves','dive','save','skarra','shoots','tall','wall','penalty'],
+    words:['bo','goalie','gloves','dive','save','shoots','tall','wall','penalty','strong'],
     pages:[
-      ['Big Bo is the goalie. He has big grey gloves.',['SS:bo','🧤']],
-      ['It is a penalty! Skarra will shoot.',['SS:skarra','⚽']],
-      ['Skarra looks left. Skarra looks right.',['SS:skarra','↔️']],
+      ['Big Bo is the goalie. He is big and strong.',['SS:bo','💪']],
+      ['It is a penalty! A striker will shoot.',['⚽','🥅']],
+      ['The striker looks left. The striker looks right.',['↔️','⚽']],
       ['Bo stands tall like a wall.',['SS:bo','🧱']],
-      ['Skarra shoots! Bo dives… SAVE!',['SS:bo:cheer','⚽','🧤']],
-      ['The Supa Strikas shout, “Big Bo! Big Bo!”',['SS:bo:cheer','SS:shakes','SS:rasta','SS:blok']],
+      ['The striker shoots! Bo dives… SAVE!',['SS:bo:cheer','⚽','🧤']],
+      ['The Supa Strikas shout, “Big Bo! Big Bo!”',['SS:bo:cheer','SS:shakes:cheer','SS:tiger:cheer','SS:matador:cheer']],
       ['Oa jumps up and cheers too!',['OA:cheer','🎉']] ],
-    quiz:[ ['Big Bo has big grey {{slot}}.','gloves',['gloves','wall','boots']],
-           ['Skarra shoots and Bo makes a {{slot}}.','save',['save','goal','kick']],
-           ['Big Bo is the {{slot}}.','goalie',['goalie','coach','sub']] ] },
-  { id:'ss5', shelf:'ss', title:'Cool Joe Crosses the Ball', lvl:5, cover:['SS:joe','🇧🇷'],
-    words:['joe','brazil','cross','wing','winger','curl','head','blok','tiger','left'],
+    quiz:[ ['Big Bo stands tall like a {{slot}}.','wall',['wall','ball','cap']],
+           ['The striker shoots and Bo makes a {{slot}}.','save',['save','goal','nap']],
+           ['Big Bo is the {{slot}}.','goalie',['goalie','striker','coach']] ] },
+  { id:'ss5', shelf:'ss', title:'El Matador the Star', lvl:5, cover:['SS:matador','🇪🇸'],
+    words:['matador','spain','goggles','ponytail','star','show','pass','share','team','dribble'],
     pages:[
-      ['Cool Joe is from Brazil. He is a winger.',['SS:joe','🇧🇷']],
-      ['He runs down the wing. Fast, fast, fast!',['SS:joe','💨']],
-      ['Twisting Tiger runs in the middle.',['SS:tiger','💨']],
-      ['Cool Joe sees Tiger. He gets ready to cross.',['SS:joe','👀']],
-      ['Joe curls the ball in the air. What a cross!',['SS:joe:cheer','⚽','🌈']],
-      ['Tiger jumps and heads the ball. GOAL!',['SS:tiger:cheer','⚽','🥅']],
-      ['“Nice one, Cool Joe!” says Tiger.',['SS:joe:cheer','SS:tiger:cheer']] ],
-    quiz:[ ['Cool Joe is from {{slot}}.','brazil',['brazil','spain','japan']],
-           ['Joe is a {{slot}}.','winger',['winger','goalie','coach']],
-           ['Tiger heads the ball. {{slot}}!','goal',['goal','save','cross']] ] },
+      ['El Matador is from Spain. He wears goggles and a ponytail.',['SS:matador','🇪🇸']],
+      ['“I am the star!” says El Matador.',['SS:matador:cheer','⭐']],
+      ['He likes to dribble. He likes to show off.',['SS:matador','⚽']],
+      ['But a team needs to share. Twisting Tiger is free!',['SS:tiger','🙋']],
+      ['El Matador passes the ball to Tiger.',['SS:matador','⚽','SS:tiger']],
+      ['Tiger scores! “Great pass!” says Shakes.',['SS:tiger:cheer','⚽','🥅','SS:shakes:cheer']],
+      ['El Matador smiles. A team is the real star!',['SS:matador:cheer','🌟']] ],
+    quiz:[ ['El Matador is from {{slot}}.','spain',['spain','japan','brazil']],
+           ['He wears goggles and a {{slot}}.','ponytail',['ponytail','cap','bag']],
+           ['A team needs to {{slot}}.','share',['share','nap','jump']] ] },
   { id:'ss6', shelf:'ss', title:'The Big League Bus Trip', lvl:6, cover:['🚌','🌍'],
-    words:['league','bus','trip','hydra','cosmos','azul','orion','nakama','colossus','sultans','grimm','tank','iron','france','japan','greece','mexico'],
+    words:['league','bus','trip','hydra','cosmos','azul','orion','nakama','colossus','sultans','grimm','tank','iron','france','japan','greece','mexico','spain'],
     pages:[
-      ['The Supa Strikas get on the team bus. It is a big trip!',['🚌','SS:shakes','SS:klaus']],
+      ['The Supa Strikas get on the team bus. It is a big trip!',['🚌','SS:shakes','SS:bo']],
       ['First stop is Mexico. They play Azul FC.',['🇲🇽','⚽']],
       ['Next is France. They play Hydra FC and Orion FC.',['🇫🇷','⚽']],
       ['Then Germany. Iron Tank FC is big and strong!',['🇩🇪','🛡️']],
       ['In Greece they play Colossus FC.',['🇬🇷','🏛️']],
       ['In Japan they play Nakama FC. Twisting Tiger is glad to be home.',['🇯🇵','SS:tiger:cheer']],
-      ['They play Sultans FC, Grimm FC and Cosmos FC too.',['🏟️','⚽']],
-      ['What a trip! The bus is full of happy Supa Strikas.',['🚌','SS:rasta:cheer','SS:joe:cheer','OA:cheer']] ],
+      ['In Spain it is El Matador’s home. “Hola!” he says.',['🇪🇸','SS:matador:cheer']],
+      ['They play Sultans FC, Grimm FC and Cosmos FC too. What a trip!',['🚌','SS:shakes:cheer','OA:cheer']] ],
     quiz:[ ['In Mexico they play {{slot}} FC.','azul',['azul','hydra','orion']],
            ['{{slot}} Tank FC is big and strong.','iron',['iron','cosmos','grimm']],
-           ['Twisting Tiger is from {{slot}}.','japan',['japan','france','greece']] ] },
+           ['El Matador is from {{slot}}.','spain',['spain','japan','france']] ] },
   { id:'ss7', shelf:'ss', title:'Oa Plays with the Supa Strikas', lvl:6, cover:['OA','SS:shakes'],
-    words:['train','training','warm','drill','pass','snack','water','pen','smile','teammate','captain','rasta'],
+    words:['train','training','pass','snack','water','pen','smile','teammate','number','star','welcome'],
     pages:[
-      ['Oa gets to train with the Supa Strikas!',['OA:cheer','SS:shakes','SS:klaus']],
+      ['Oa gets to train with the Supa Strikas!',['OA:cheer','SS:shakes','SS:tiger']],
       ['Oa packs his bag. He has his snack and his insulin pen.',['OA','🎒','PEN']],
-      ['Dancing Rasta is the captain. He says, “Welcome, Oa!”',['SS:rasta:cheer','OA']],
-      ['Coach Ledige blows his whistle. “Pass, pass, shoot!”',['SS:coach','📣']],
-      ['Oa passes to Shakes. Shakes passes to Cool Joe.',['OA','SS:shakes','SS:joe']],
-      ['Joe crosses it back. Oa kicks it. GOAL!',['OA:cheer','⚽','🥅']],
-      ['Everyone claps. “Number 10 is a star!” says Shakes.',['SS:shakes:cheer','OA:cheer','👏']],
+      ['“Welcome, Oa!” says Shakes. “We both wear number 10!”',['SS:shakes:cheer','OA:cheer']],
+      ['Twisting Tiger runs fast. Oa runs fast too!',['SS:tiger','OA','💨']],
+      ['Oa passes to El Matador. El Matador passes to Shakes.',['OA','SS:matador','SS:shakes']],
+      ['Shakes crosses it back. Oa kicks it. GOAL! Big Bo claps.',['OA:cheer','⚽','🥅','SS:bo:cheer']],
+      ['“Number 10 is a star!” says Shakes. Everyone claps.',['SS:shakes:cheer','OA:cheer','👏']],
       ['Oa has a snack and some water. What a great day!',['OA:cheer','🥜','💧']] ],
-    quiz:[ ['{{slot}} Rasta is the captain.','dancing',['dancing','twisting','cool']],
+    quiz:[ ['Oa and Shakes both wear number {{slot}}.','ten',['ten','nine','two']],
            ['Oa packs his snack and his insulin {{slot}}.','pen',['pen','cap','ball']],
-           ['Oa passes to {{slot}}.','shakes',['shakes','skarra','bo']] ] }
+           ['Big Bo {{slot}} when Oa scores.','claps',['claps','naps','sits']] ] }
 ];
 
 /* ---------- Supa Strikas (private family use): original simple drawings, not official art ---------- */
@@ -754,8 +751,8 @@ function toon(o){
       +P('M41 24 Q38 0 60 0 Q82 0 79 24 Q74 12 60 11 Q46 12 41 24Z',hc)
       +`<path d="M41 8 H79 V13 H41Z" fill="#2fbf71" stroke="${ink}" stroke-width="1.2"/><path d="M41 13 H79 V18 H41Z" fill="#f7c82a" stroke="${ink}" stroke-width="1.2"/><path d="M41 18 H79 V23 H41Z" fill="#e1262c" stroke="${ink}" stroke-width="1.2"/>`,
     goggles:P('M40 26 Q34 -2 60 -2 Q86 -2 80 26 Q74 12 60 11 Q46 12 40 26Z',hc)+`<path d="M42 8 Q60 -1 78 8 L79 15 Q60 7 41 15Z" fill="#f7c82a" stroke="${ink}" stroke-width="1.6"/><rect x="46" y="8" width="12" height="6" rx="3" fill="#4fd3ff" stroke="${ink}" stroke-width="1.4"/><rect x="62" y="8" width="12" height="6" rx="3" fill="#4fd3ff" stroke="${ink}" stroke-width="1.4"/>`,
-    hightop:[[43,10],[49,0],[57,-6],[66,-6],[73,0],[78,10]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="8.5" fill="${hc}"/>`).join('')+P('M41 22 C36 6 38 -10 60 -11 C82 -10 84 6 79 22 C77 13 72 8 60 8 C48 8 43 13 41 22Z',hc)
-      +[[45,2],[53,-6],[62,-7],[71,-5],[77,3],[50,5],[70,5]].map(([x,y])=>`<path d="M${x-3.5} ${y+2} q3.5 -5 7 0" stroke="${hl}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`).join(''),
+    hightop:[[40,12],[46,0],[54,-7],[63,-8],[72,-3],[79,6],[83,16]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9" fill="${hc}"/>`).join('')+P('M37 26 C31 8 35 -13 60 -14 C85 -13 89 8 83 26 C81 16 73 8 60 7 C47 8 39 16 37 26Z',hc)
+      +[[43,4],[51,-6],[61,-9],[71,-6],[79,3],[48,8],[73,8]].map(([x,y])=>`<path d="M${x-3.5} ${y+2} q3.5 -5 7 0" stroke="${hl}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`).join(''),
     bald:`<path d="M48 6 Q60 1 72 6" stroke="#fff" stroke-width="2.6" opacity=".5" fill="none" stroke-linecap="round"/>`
   }[o.style]||'';
   const hairCol=o.hair||'#3a2a1c', browCol=o.browCol||(hairCol==='#f1c93a'||hairCol==='#d6b348')?'#8a6a10':(o.hair?hairCol:'#3a2a1c');
@@ -787,12 +784,33 @@ function toon(o){
   }
   const neck=P('M53 42 L53 60 Q60 66 67 60 L67 42Z',sk2);
   const hb=o.style==='slickpony'?P('M76 8 Q100 6 100 40 Q100 62 90 74 Q94 52 88 38 Q84 24 77 24Z',hc)+`<path d="M96 30 Q97 50 92 64" stroke="${hl}" stroke-width="1.6" fill="none" opacity=".5"/>`:'';
-  const head=`${hb}${ears}${face}${back?'':''}${faceFeat}${H}${back?P('M40 24 Q36 0 60 -2 Q84 0 80 24 Q82 40 66 46 Q60 48 54 46 Q38 40 40 24Z',hc)+(o.style==='hightop'?H:''):''}`;
+  let kidHead='';
+  if(kid&&!back){
+    const eyeK=x=>up
+      ? `<path d="M${x-6.5} 28 Q${x} 20 ${x+6.5} 28" fill="none" stroke="${ink}" stroke-width="2.8" stroke-linecap="round"/>`
+      : `<ellipse cx="${x}" cy="27.5" rx="6" ry="6.8" fill="#fff" stroke="${ink}" stroke-width="1.6"/><circle cx="${x+(x<60?.8:-.8)}" cy="28.4" r="4.1" fill="#3a1e0e"/><circle cx="${x+(x<60?.8:-.8)}" cy="28.4" r="2.1" fill="#050505"/><circle cx="${x+1.8}" cy="26" r="1.5" fill="#fff"/><path d="M${x-6.6} 25 Q${x} 19.5 ${x+6.6} 25" fill="none" stroke="${ink}" stroke-width="2" stroke-linecap="round"/>`;
+    const browK=sad?`<path d="M43 17 L55 20 M77 17 L65 20" stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>`
+      :mood==='think'?`<path d="M44 18 Q50 14 56 17 M64 14 Q71 9 77 13" stroke="${ink}" stroke-width="2.4" stroke-linecap="round" fill="none"/>`
+      :`<path d="M44 17.5 Q50 12.5 56 17 M64 17 Q70 12.5 76 17.5" stroke="${ink}" stroke-width="2.4" stroke-linecap="round" fill="none"/>`;
+    const gapK=`<rect x="59.2" y="38.2" width="1.7" height="5" fill="#6e1624"/>`;
+    const mouthK = up ? `<path d="M46 35.5 Q60 55 74 35.5Z" fill="#6e1624" stroke="${ink}" stroke-width="1.8" stroke-linejoin="round"/><path d="M48 36.3 Q60 40.5 72 36.3 L71 41 Q60 45 49 41Z" fill="#fff"/>${gapK}<path d="M52 47 Q60 42 68 47 Q60 53 52 47Z" fill="#e0646f"/>`
+      : sad ? `<path d="M52 44 Q60 37.5 68 44" fill="none" stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>`
+      : mood==='think' ? `<ellipse cx="62" cy="41.5" rx="4" ry="3.2" fill="#6e1624" stroke="${ink}" stroke-width="1.6"/>`
+      : `<path d="M47 36.5 Q60 49 73 36.5 Q60 40 47 36.5Z" fill="#6e1624" stroke="${ink}" stroke-width="1.8" stroke-linejoin="round"/><path d="M48.5 37 Q60 41.5 71.5 37 L70.5 41.6 Q60 46 49.5 41.6Z" fill="#fff"/>${gapK}<path d="M53 44.8 Q60 41.5 67 44.8 Q60 48.5 53 44.8Z" fill="#e0646f"/>`;
+    kidHead=`${P('M36.5 29 Q33 22 38 25 Q39 33 42 36Z',sk)}${P('M83.5 29 Q87 22 82 25 Q81 33 78 36Z',sk)}
+      ${P('M38 22 Q38 4 60 4 Q82 4 82 22 Q83.5 38 70 46 Q60 50.5 50 46 Q36.5 38 38 22Z',sk)}
+      <path d="M82 22 Q83.5 38 70 46 Q60 50.5 55 49 Q70 42 74 30 Q77 18 76 8Z" fill="${sk2}" opacity=".35"/>
+      <ellipse cx="46" cy="37" rx="5.2" ry="3.4" fill="#e0604a" opacity=".3"/><ellipse cx="74" cy="37" rx="5.2" ry="3.4" fill="#e0604a" opacity=".3"/>
+      ${browK}${eyeK(50)}${eyeK(70)}
+      <path d="M58 33.5 Q60 36 62 33.5" fill="none" stroke="${sk3}" stroke-width="1.8" stroke-linecap="round"/>
+      ${mouthK}`;
+  }
+  const head=kid&&!back ? `${kidHead}${H}` : `${hb}${ears}${face}${back?'':''}${faceFeat}${H}${back?P('M37 26 Q32 -2 60 -4 Q88 -2 83 26 Q85 42 69 49 Q60 51 51 49 Q35 42 37 26Z',hc)+(o.style==='hightop'?H:''):''}`;
   const legT = kid?'':'translate(0 284) scale(1 .84) translate(0 -284)';
   const body=`<ellipse cx="60" cy="285" rx="38" ry="4" fill="#000" opacity=".16"/><g transform="${legT}">${legs}</g>${shorts}${armR}${armL}${torso}${neck}`;
-  const bodyT = kid ? `translate(60 284) scale(.8) translate(-60 -284)` : '';
-  const headT = kid ? `translate(0 50) translate(60 47) scale(1.34) translate(-60 -47)` : `translate(0 3) translate(60 47) scale(1.22) translate(-60 -47)`;
-  const vb = kid ? '0 8 120 284' : '0 -44 120 332';
+  const bodyT = kid ? `translate(60 284) scale(.82 .68) translate(-60 -284)` : '';
+  const headT = kid ? `translate(0 80) translate(60 47) scale(1.5) translate(-60 -47)` : `translate(0 3) translate(60 47) scale(1.22) translate(-60 -47)`;
+  const vb = kid ? '0 20 120 276' : '0 -44 120 332';
   const ball=o.ball?`<g transform="translate(104 272)"><circle r="11" fill="#fff" stroke="${ink}" stroke-width="2"/><path d="M0 -5 L5 -1.5 L3 4 L-3 4 L-5 -1.5Z" fill="${ink}"/></g>`:'';
   return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${o.name||'player'}"><g transform="translate(60 0) scale(${o.big?1.2:1} 1) translate(-60 0)"><g transform="${bodyT}">${body}</g><g transform="${headT}">${head}</g></g>${ball}</svg>`;
 }
@@ -1048,7 +1066,7 @@ let cur='home', rd=null;
 const viewEl=$('#view');
 const view = html => { viewEl.innerHTML=html; viewEl.scrollTop=0; };
 function updBar(){
-  $('#bar').innerHTML=`<button class="logo" data-a="home"><span class="fig" style="width:46px">${oa('happy').replace(/viewBox="[^"]*"/,'viewBox="26 14 68 88"')}</span><span class="nm">Oa's Edu Tool</span></button>
+  $('#bar').innerHTML=`<button class="logo" data-a="home"><span class="fig" style="width:46px">${oa('happy').replace(/viewBox="[^"]*"/,'viewBox="24 30 72 100"')}</span><span class="nm">Oa's Edu Tool</span></button>
     <span class="spacer"></span>
     <span class="chip" title="Points">⭐ ${S.points}</span><span class="chip" title="Arcade tokens">🎟 ${tokens()}</span>
     <button class="ib" data-a="theme" aria-label="Colours">🎨</button>
@@ -1173,7 +1191,7 @@ function viewArcade(){
 function startArcade(){
   Snd.ensure(); Snd.start('arcade');
   const ar=$('#arena'), W=ar.clientWidth, H=ar.clientHeight;
-  const ph=Math.max(110,Math.min(H*.34,200)), pw=ph*120/284, is=Math.max(44,Math.min(W*.075,66));
+  const ph=Math.max(110,Math.min(H*.34,200)), pw=ph*120/276, is=Math.max(44,Math.min(W*.075,66));
   arcade={ar,W,H,pw,ph,is,x:W/2,tx:null,dir:0,key:0,items:[],lives:3,score:0,coins:0,t:0,sp:.6,last:performance.now(),over:false,raf:0,moodT:0,
           py:H-H*.05-ph};
   const pl=$('#player'); pl.style.width=pw+'px'; pl.innerHTML=oa('happy');
