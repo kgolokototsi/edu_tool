@@ -27,7 +27,7 @@ Unlock all topics and books, give a bonus token, or reset progress. Progress is 
 
 Everything lives in `index.html`:
 
-- Supa Strikas players and kit colours: `PLAYERS` and `KIT` (art tokens look like `SS:shakes`, `SS:joe:cheer`). These are simple original drawings for private family use, not official art.
+- Supa Strikas players and kit colours: `PLAYERS` and `KIT` (art tokens look like `SS:shakes`, `SS:joe:cheer`). These are my own drawings in the show's style (red kit with the big star, Big Bo in yellow), made for private family use, not official art.
 - Stories: the `BOOKS` array (pages of text plus emoji pictures, `OA` for Oa, a `quiz` of three fill-in-the-gap questions).
 - Maths: one generator per topic in `GEN`; topics are listed in `TOPICS`.
 - Oa's look: `CONFIG.character` colours and the `oa()` drawing. Token cost per game: `COST`.
