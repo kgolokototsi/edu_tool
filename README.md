@@ -15,7 +15,7 @@ Tap anywhere once to start the music.
   - **Catch & Dodge:** catch insulin pens (+1 heart), coins and low-carb snacks; dodge high-carb sweets and food. It is a game, not medical advice.
   - **Penalty Kicks:** five shots against a keeper. Tap in the goal to aim; the top corners are unsaveable but easy to miss.
   - **Tic Tac Toe** and **Connect 4:** Easy, Tricky or Genius computer, or 2 players on one tablet. Wins, draws and losses earn points.
-- **Oa the character:** drawn from Oa's photo in a cartoon style: curly hair, big grin, white shirt with "Fly Emirates", number 10 on the shorts (and on the back).
+- **Oa the character:** drawn in the same style as the Supa Strikas players (athletic proportions, thin outline), from Oa's photo: curly high-top, big gap-toothed grin, white shirt with "Fly Emirates", number 10 on the shorts and the back.
 - **Themes:** purple, teal, blue or green (the 🎨 button).
 - **Sound:** the music and sound effects are generated in code (WebAudio), there are no audio files. 🔊 mutes.
 
@@ -27,7 +27,7 @@ Unlock all topics and books, give a bonus token, or reset progress. Progress is 
 
 Everything lives in `index.html`:
 
-- Supa Strikas players and kit colours: `PLAYERS` and `KIT` (art tokens look like `SS:shakes`, `SS:joe:cheer`). These are my own drawings in the show's style (red kit with the big star, Big Bo in yellow), made for private family use, not official art.
+- Supa Strikas players and kit colours: `PLAYERS` and `KIT` (art tokens look like `SS:shakes`, `SS:joe:cheer`). These are my own drawings in the show's style (red kit with the big star, Big Bo in yellow), made for private family use, not official art. Oa and the players share one drawing function, `toon()`.
 - Stories: the `BOOKS` array (pages of text plus emoji pictures, `OA` for Oa, a `quiz` of three fill-in-the-gap questions).
 - Maths: one generator per topic in `GEN`; topics are listed in `TOPICS`.
 - Oa's look: `CONFIG.character` colours and the `oa()` drawing. Token cost per game: `COST`.
