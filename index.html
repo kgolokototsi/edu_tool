@@ -686,14 +686,16 @@ function toon(o){
     const hand=K.glove?`<ellipse cx="${h[0]}" cy="${h[1]+1}" rx="9" ry="9.5" fill="${K.glove}" stroke="${ink}" stroke-width="${lw}"/><path d="M${h[0]-4} ${h[1]-1} v7 M${h[0]} ${h[1]-2} v9 M${h[0]+4} ${h[1]-1} v7" stroke="${darken(K.glove,.7)}" stroke-width="1.2"/>`
       :`<ellipse cx="${h[0]}" cy="${h[1]+1}" rx="6.8" ry="7.6" fill="${sk}" stroke="${ink}" stroke-width="${lw}"/><path d="M${h[0]-3.5} ${h[1]-1} v5 M${h[0]} ${h[1]-2} v6.5 M${h[0]+3.5} ${h[1]-1} v5" stroke="${sk3}" stroke-width="1.1" stroke-linecap="round"/>`;
     const cuff=o.band?`<path d="M${e[0]-6} ${(e[1]+h[1])/2} l12 2.5" stroke="#2fbf71" stroke-width="3"/><path d="M${e[0]-6} ${(e[1]+h[1])/2+3.2} l12 2.5" stroke="#f7c82a" stroke-width="3"/><path d="M${e[0]-6} ${(e[1]+h[1])/2+6.4} l12 2.5" stroke="#e1262c" stroke-width="3"/>`:'';
-    return fore+bare+lsl+(rightRaised?cuff:'')+upper+(K.trim&&!o.longSleeve&&!o.suit?`<path d="M${(mid[0]-7).toFixed(1)} ${(mid[1]-1).toFixed(1)} l14 3" stroke="${K.trim}" stroke-width="3" stroke-linecap="round"/>`:'')+hand;
+    const lp=(a,b,t)=>[(a[0]+(b[0]-a[0])*t).toFixed(1),(a[1]+(b[1]-a[1])*t).toFixed(1)];
+    const wr=o.wraps?L([lp(e,h,.1),lp(e,h,.74)],13.6,'#ede1c6')+`<path d="M${lp(e,h,.3).join(' ')} l6 -1 M${lp(e,h,.5).join(' ')} l6 -1" stroke="#b9a98a" stroke-width="1.2" opacity=".8"/>`:'';
+    return fore+bare+lsl+wr+(rightRaised?cuff:'')+upper+(K.trim&&!o.longSleeve&&!o.suit?`<path d="M${(mid[0]-7).toFixed(1)} ${(mid[1]-1).toFixed(1)} l14 3" stroke="${K.trim}" stroke-width="3" stroke-linecap="round"/>`:'')+hand;
   };
   const armL=armOf(poses.l,false);
   const armR=mir(armOf(poses.l,!!o.band));
   // ---- legs ----
   const leg=(x)=>{ // x offsets for left leg, mirrored later
     return `${P('M44 160 L59 160 L58 214 L46 214Z',sk)}<path d="M52 170 Q55 190 55 212" stroke="${sk2}" stroke-width="4" fill="none" opacity=".5"/>
-      ${P('M45.5 210 L58 210 L57 266 L47 266Z',K.sock)}<path d="M45.8 224 L57.7 224 L57.5 230 L46 230Z" fill="${K.trim==='#9aa3ad'?'#fff':(K.trim||'#fff')}" opacity=".95"/>
+      ${P('M45.5 210 L58 210 L57 266 L47 266Z',o.sockCol||K.sock)}<path d="M45.8 224 L57.7 224 L57.5 230 L46 230Z" fill="${o.sockCol?K.shirt:(K.trim==='#9aa3ad'?'#fff':(K.trim||'#fff'))}" opacity=".95"/>
       ${P('M42 264 L60 264 Q70 272 68 284 L38 284 Q37 270 42 264Z','#17131b')}<path d="M42 276 H64" stroke="#fff" stroke-width="2" opacity=".6" stroke-linecap="round"/>`;
   };
   const legs=o.suit
@@ -723,6 +725,7 @@ function toon(o){
         <text x="58" y="112" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="9" fill="${K.trim}" textLength="40" lengthAdjust="spacingAndGlyphs">Fly Emirates</text>`;
     }
     if(o.kitBadge!==false && !o.suit && !back && !o.emirates) torso+=`<path d="M70 80 h11 v9 q0 5 -5.5 8 q-5.5 -3 -5.5 -8z" fill="#f7c82a" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/><path d="M77 82 l-4.2 7 h3.4 l-2 6.5 l5.6 -8 h-3.4z" fill="#e1262c" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
+    if(o.straps) torso+=`<path d="M33 63 L47 57.5 L55 103 L44 104Z M87 63 L73 57.5 L65 103 L76 104Z" fill="${K.strap}" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/><path d="M52 96 h12 v10 q0 5 -6 8.5 q-6 -3.5 -6 -8.5z" fill="#f7c82a" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/><path d="M59.5 98 l-4.6 7.6 h3.7 l-2.2 7 l6.2 -8.8 h-3.7z" fill="#e1262c" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
     if(o.keeperLine) torso+=`<path d="M50 134 L56 82 M70 134 L64 82" stroke="${K.dark}" stroke-width="2.6" opacity=".45"/>`;
     torso+=`<path d="M48 58 Q60 78 72 58" fill="${sk}" stroke="${ink}" stroke-width="${lw}"/><path d="M47 58 Q60 80 73 58" fill="none" stroke="${K.trim}" stroke-width="4" stroke-linecap="round"/>`;
   }
@@ -738,6 +741,7 @@ function toon(o){
     short:P('M41 24 Q38 2 60 1 Q82 2 79 24 Q74 13 60 12 Q46 13 41 24Z',hc)+`<path d="M48 7 Q60 2 72 7" stroke="${hl}" stroke-width="2" fill="none" opacity=".6" stroke-linecap="round"/>`,
     slick:P('M40 26 Q36 0 62 0 Q84 2 80 26 Q74 12 60 12 Q46 12 40 26Z',hc)+`<path d="M46 6 Q62 -1 76 8" stroke="${hl}" stroke-width="2" fill="none" opacity=".6"/>`,
     spiky:spikes([41,26,38,10,46,13,45,-1,54,8,60,-4,66,8,75,-1,74,13,82,10,79,26,74,15,60,13,46,15],hc),
+    flame:spikes([41,26,35,9,42,12,36,-7,47,3,47,-14,56,-2,61,-20,67,-3,77,-13,75,3,86,-4,82,12,84,26,77,14,60,9,45,14],hc)+`<path d="M52 0 L58 -12 M66 -2 L72 -9" stroke="${hl}" stroke-width="2" opacity=".7" stroke-linecap="round"/>`,
     notch:P('M41 26 L38 12 Q38 2 44 0 L43 -10 L50 -4 L52 -13 L58 -5 L61 -14 L66 -5 L71 -13 L72 -4 L78 -10 L77 0 Q84 3 82 14 L79 26 Q75 9 60 8 Q45 9 41 26Z',hc)+`<path d="M48 4 Q60 -1 74 4" stroke="${hl}" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>`,
     slickpony:P('M40 27 Q35 1 61 -1 Q84 1 81 27 Q76 8 60 7 Q45 8 40 27Z',hc)+`<path d="M46 5 Q62 -3 77 6" stroke="${hl}" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>`,
     crown:spikes([41,26,40,8,47,12,48,-1,55,8,60,-2,65,8,72,-1,73,12,80,8,79,26,74,15,60,13,46,15],hc),
@@ -754,15 +758,15 @@ function toon(o){
       +[[45,2],[53,-6],[62,-7],[71,-5],[77,3],[50,5],[70,5]].map(([x,y])=>`<path d="M${x-3.5} ${y+2} q3.5 -5 7 0" stroke="${hl}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`).join(''),
     bald:`<path d="M48 6 Q60 1 72 6" stroke="#fff" stroke-width="2.6" opacity=".5" fill="none" stroke-linecap="round"/>`
   }[o.style]||'';
-  const hairCol=o.hair||'#3a2a1c', browCol=(hairCol==='#f1c93a'||hairCol==='#d6b348')?'#8a6a10':(o.hair?hairCol:'#3a2a1c');
+  const hairCol=o.hair||'#3a2a1c', browCol=o.browCol||(hairCol==='#f1c93a'||hairCol==='#d6b348')?'#8a6a10':(o.hair?hairCol:'#3a2a1c');
   let faceFeat='';
   if(!back){
     const eyeL=up?`<path d="M44.5 23 Q51 16 57.5 23" fill="none" stroke="${ink}" stroke-width="2.6" stroke-linecap="round"/>`
       :`<path d="M44 23.5 Q51 17 58 21.5 Q52 27.5 44 23.5Z" fill="#fff" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/><circle cx="52.4" cy="22.6" r="2.9" fill="${o.eye||'#3a1e0e'}"/><circle cx="52.4" cy="22.6" r="1.5" fill="#050505"/><circle cx="53.4" cy="21.6" r=".9" fill="#fff"/><path d="M43.5 23.5 Q51 16 58.5 21.4" fill="none" stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>`;
     const eyeR=up?`<path d="M62.5 23 Q69 16 75.5 23" fill="none" stroke="${ink}" stroke-width="2.6" stroke-linecap="round"/>`
       :`<path d="M76 23.5 Q69 17 62 21.5 Q68 27.5 76 23.5Z" fill="#fff" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/><circle cx="67.6" cy="22.6" r="2.9" fill="${o.eye||'#3a1e0e'}"/><circle cx="67.6" cy="22.6" r="1.5" fill="#050505"/><circle cx="68.6" cy="21.6" r=".9" fill="#fff"/><path d="M76.5 23.5 Q69 16 61.5 21.4" fill="none" stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>`;
-    const brow = sad
-      ? `<path d="M42 15 L58 20.5 M78 15 L62 20.5" stroke="${browCol}" stroke-width="3.4" stroke-linecap="round"/>`
+    const brow = (sad||o.fierce)
+      ? `<path d="M42 15 L58 20.5 M78 15 L62 20.5" stroke="${browCol}" stroke-width="${o.fierce?4.6:3.4}" stroke-linecap="round"/>`
       : mood==='think'
       ? `<path d="M43 17 Q50 13 58 17 M62 14 Q70 8 77 12" stroke="${browCol}" stroke-width="3.2" stroke-linecap="round" fill="none"/>`
       : `<path d="M42.5 ${kid?14.5:17.5} Q50 ${kid?8.5:12.5} 58 ${kid?14.5:17.5} M77.5 ${kid?14.5:17.5} Q70 ${kid?8.5:12.5} 62 ${kid?14.5:17.5}" stroke="${browCol}" stroke-width="${kid?2.8:3.4}" stroke-linecap="round" fill="none"/>`;
@@ -790,7 +794,7 @@ function toon(o){
   const headT = kid ? `translate(0 50) translate(60 47) scale(1.34) translate(-60 -47)` : `translate(0 3) translate(60 47) scale(1.22) translate(-60 -47)`;
   const vb = kid ? '0 8 120 284' : '0 -44 120 332';
   const ball=o.ball?`<g transform="translate(104 272)"><circle r="11" fill="#fff" stroke="${ink}" stroke-width="2"/><path d="M0 -5 L5 -1.5 L3 4 L-3 4 L-5 -1.5Z" fill="${ink}"/></g>`:'';
-  return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${o.name||'player'}"><g transform="translate(60 0) scale(${o.big?1.12:1} 1) translate(-60 0)"><g transform="${bodyT}">${body}</g><g transform="${headT}">${head}</g></g>${ball}</svg>`;
+  return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${o.name||'player'}"><g transform="translate(60 0) scale(${o.big?1.2:1} 1) translate(-60 0)"><g transform="${bodyT}">${body}</g><g transform="${headT}">${head}</g></g>${ball}</svg>`;
 }
 
 /* Oa, in the same style */
@@ -803,7 +807,7 @@ function oa(mood='happy',o={}){
 /* ---------- Supa Strikas (private family use): my own drawings in the show's style, not official art ---------- */
 const KIT = {
   home:  {shirt:'#e1262c', dark:'#9c1017', trim:'#ffffff', shorts:'#e1262c', sock:'#e1262c'},
-  keeper:{shirt:'#f7c82a', dark:'#b98c08', trim:'#fff6cf', shorts:'#f7c82a', sock:'#f7c82a', sleeve:'#f7c82a', glove:'#e4e9ee'},
+  keeper:{shirt:'#f7c82a', dark:'#b98c08', trim:'#fff6cf', strap:'#7d838c', shorts:'#f7c82a', sock:'#f7c82a', sleeve:'#f7c82a', glove:'#e4e9ee'},
   rival: {shirt:'#23232b', dark:'#101015', trim:'#c8ccd4', shorts:'#23232b', sock:'#23232b'},
   coach: {shirt:'#8e949c', dark:'#6b7179', trim:'#ffffff', shorts:'#8e949c', sock:'#23232b'}
 };
@@ -813,8 +817,8 @@ const PLAYERS = {
   joe:     {n:'Cool Joe', no:7, skin:'#b97848', hair:'#15110f', style:'afro', clip:1},
   matador: {n:'El Matador', no:20, skin:'#c98d5c', hair:'#15110f', style:'slickpony', shades:1, sharp:1},
   rasta:   {n:'Dancing Rasta', no:9, skin:'#6f432a', hair:'#15110f', style:'dreads', beard:1, band:1},
-  tiger:   {n:'Twisting Tiger', no:16, skin:'#e8b88a', hair:'#15110f', style:'goggles'},
-  bo:      {n:'Big Bo', no:1, skin:'#d79a68', hair:null, style:'bald', kit:'keeper', big:1, longSleeve:1, keeperLine:1},
+  tiger:   {n:'Twisting Tiger', no:16, skin:'#c58852', hair:'#a31d12', hairHi:'#e0553a', browCol:'#15110f', style:'flame', fierce:1, sharp:1, wraps:1, sockCol:'#ffffff'},
+  bo:      {n:'Big Bo', no:1, skin:'#c58852', hair:'#15110f', style:'bald', kit:'keeper', big:1, longSleeve:1, straps:1, kitBadge:false, fierce:1, sharp:1},
   blok:    {n:'Blok', no:55, skin:'#efc096', hair:'#d6b348', style:'curly', big:1},
   shaw:    {n:'North Shaw', no:8, skin:'#e2a97c', hair:'#7a4a22', style:'short'},
   eagle:   {n:'Eagle Eye', no:4, skin:'#c68250', hair:'#15110f', style:'spiky'},
