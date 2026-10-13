@@ -685,7 +685,8 @@ function toon(o){
     const cuff=o.band?`<path d="M${e[0]-6} ${(e[1]+h[1])/2} l12 2.5" stroke="#2fbf71" stroke-width="3"/><path d="M${e[0]-6} ${(e[1]+h[1])/2+3.2} l12 2.5" stroke="#f7c82a" stroke-width="3"/><path d="M${e[0]-6} ${(e[1]+h[1])/2+6.4} l12 2.5" stroke="#e1262c" stroke-width="3"/>`:'';
     const lp=(a,b,t)=>[(a[0]+(b[0]-a[0])*t).toFixed(1),(a[1]+(b[1]-a[1])*t).toFixed(1)];
     const wr=o.wraps?L([lp(e,h,.1),lp(e,h,.74)],13.6,'#ede1c6')+`<path d="M${lp(e,h,.3).join(' ')} l6 -1 M${lp(e,h,.5).join(' ')} l6 -1" stroke="#b9a98a" stroke-width="1.2" opacity=".8"/>`:'';
-    return fore+bare+lsl+wr+(rightRaised?cuff:'')+upper+(K.trim&&!o.longSleeve&&!o.suit?`<path d="M${(mid[0]-7).toFixed(1)} ${(mid[1]-1).toFixed(1)} l14 3" stroke="${K.trim}" stroke-width="3" stroke-linecap="round"/>`:'')+hand;
+    const sst=o.shoulderStripe?[.12,.27,.42].map(t=>{const q=lp(s,mid,t);return `<path d="M${(q[0]-7.5).toFixed(1)} ${(q[1]-1.5).toFixed(1)} l15 3.4" stroke="${o.shoulderStripe}" stroke-width="2.3" stroke-linecap="round"/>`;}).join(''):'';
+    return fore+bare+lsl+wr+(rightRaised?cuff:'')+upper+sst+(K.trim&&!o.longSleeve&&!o.suit?`<path d="M${(mid[0]-7).toFixed(1)} ${(mid[1]-1).toFixed(1)} l14 3" stroke="${K.trim}" stroke-width="3" stroke-linecap="round"/>`:'')+hand;
   };
   const armL=armOf(poses.l,false);
   const armR=mir(armOf(poses.l,!!o.band));
@@ -699,7 +700,7 @@ function toon(o){
     ? `${P('M42 132 L78 132 L80 270 L62 270 L60 170 L58 270 L40 270Z','#2a2a33')}${P('M38 270 L58 270 L60 284 L36 284Z','#17131b')}${P('M62 270 L82 270 L84 284 L60 284Z','#17131b')}`
     : leg()+mir(leg());
   const shorts=o.suit?'':P(`M40 130 L80 130 L84 184 L63 188 L60 168 L57 188 L36 184Z`,K.shorts)
-     +`<path d="M37 184 L41 133 M83 184 L79 133" stroke="${K.trim}" stroke-width="3.6" stroke-linecap="round"/>`
+     +(o.noSide?`<path d="M40 130 L80 130" stroke="${K.trim}" stroke-width="3" stroke-linecap="round"/>`:`<path d="M37 184 L41 133 M83 184 L79 133" stroke="${K.trim}" stroke-width="3.6" stroke-linecap="round"/>`)
      +(o.no!=null&&!back&&!o.hideShortNo?`<text x="73" y="166" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="13" fill="${o.shortNoCol||'#fff'}" stroke="${ink}" stroke-width=".5">${o.no}</text>`:'');
   // ---- torso ----
   const torsoPath='M31 64 Q60 54 89 64 L85 100 L81 134 L39 134 L35 100Z';
@@ -709,7 +710,7 @@ function toon(o){
       +P('M48 58 L60 118 L72 58Z','#fff')+P('M60 74 l-5 8 l3 34 l2 6 l2 -6 l3 -34z','#c8202a')
       +`<path d="M48 58 L60 100 L40 150 M72 58 L60 100 L80 150" stroke="${ink}" stroke-width="1.8" fill="none"/>`;
   } else {
-    torso+=`<path d="M33.5 92 L38 134 M86.5 92 L82 134" stroke="${K.trim}" stroke-width="${o.kit_wide||5.4}" stroke-linecap="round"/>`;
+    if(!o.noSide) torso+=`<path d="M33.5 92 L38 134 M86.5 92 L82 134" stroke="${K.trim}" stroke-width="${o.kit_wide||5.4}" stroke-linecap="round"/>`;
     if(back){
       torso+=`<text x="60" y="84" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="10" letter-spacing="1.5" fill="${o.numCol||K.trim}">${o.name||''}</text><text x="60" y="118" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="34" fill="${o.numCol||K.trim}">${o.no??''}</text>`;
     } else if(o.star){
@@ -718,11 +719,11 @@ function toon(o){
         <path d="M0 -20 L5 -6 L19 -6 L8 3 L12 17 L0 8 L-12 17 L-8 3 L-19 -6 L-5 -6Z" fill="#fff" stroke="${ink}" stroke-width="1.8" stroke-linejoin="round"/></g>
         `;
     } else if(o.emirates){
-      torso+=`<g transform="translate(76 86)"><circle r="6.5" fill="#f6d046" stroke="#8a6a00" stroke-width="1.4"/><circle r="4.3" fill="#fff"/><path d="M-3 0 H3" stroke="#2a5bd7" stroke-width="2"/></g>
-        <text x="58" y="112" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="9" fill="${K.trim}" textLength="40" lengthAdjust="spacingAndGlyphs">Fly Emirates</text>`;
+      torso+=`<g transform="translate(75 84)"><path d="M-5.5 -6.5 l1.3 -4.2 l2.2 2.6 l2 -3.6 l2 3.6 l2.2 -2.6 l1.3 4.2z" fill="#f2c230" stroke="#8a6a00" stroke-width=".8" stroke-linejoin="round"/>
+        <circle r="6.6" fill="#fff" stroke="#c9a227" stroke-width="1.5"/><rect x="-6" y="-1.6" width="12" height="3.2" fill="#2a5bd7"/><path d="M-3.5 -4 h7 M-3.5 4 h7" stroke="#c9a227" stroke-width="1"/></g>
+        <text x="60" y="113" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="9.5" fill="${K.trim}" textLength="42" lengthAdjust="spacingAndGlyphs">Fly Emirates</text>
+        <path d="M43 86 l3 -4 M46 86 l3 -4 M49 86 l3 -4" stroke="${K.trim}" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>`;
     }
-    if(o.kitBadge!==false && !o.suit && !back && !o.emirates) torso+=`<path d="M70 80 h11 v9 q0 5 -5.5 8 q-5.5 -3 -5.5 -8z" fill="#f7c82a" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/><path d="M77 82 l-4.2 7 h3.4 l-2 6.5 l5.6 -8 h-3.4z" fill="#e1262c" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
-    if(o.straps) torso+=`<path d="M33 63 L47 57.5 L55 103 L44 104Z M87 63 L73 57.5 L65 103 L76 104Z" fill="${K.strap}" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/><path d="M52 96 h12 v10 q0 5 -6 8.5 q-6 -3.5 -6 -8.5z" fill="#f7c82a" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/><path d="M59.5 98 l-4.6 7.6 h3.7 l-2.2 7 l6.2 -8.8 h-3.7z" fill="#e1262c" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
     if(o.keeperLine) torso+=`<path d="M50 134 L56 82 M70 134 L64 82" stroke="${K.dark}" stroke-width="2.6" opacity=".45"/>`;
     torso+=`<path d="M48 58 Q60 78 72 58" fill="${sk}" stroke="${ink}" stroke-width="${lw}"/><path d="M47 58 Q60 80 73 58" fill="none" stroke="${K.trim}" stroke-width="4" stroke-linecap="round"/>`;
   }
@@ -819,7 +820,7 @@ function toon(o){
 function oa(mood='happy',o={}){
   const c=CONFIG.character;
   return toon({mood,back:!!o.back,ball:!!o.ball,kid:true,name:'OA',no:10,skin:c.skin,hair:c.hair,hairHi:'#5a5a64',style:'hightop',gap:true,cheek:true,
-    kit:{shirt:'#ffffff',dark:'#b9c0cf',trim:c.trim,shorts:'#ffffff',sock:'#ffffff',glove:null,sleeve:null},numCol:c.trim,shortNoCol:c.trim,emirates:true});
+    kit:{shirt:'#ffffff',dark:'#b9c0cf',trim:c.trim,shorts:'#ffffff',sock:'#ffffff',glove:null,sleeve:null},numCol:c.trim,shortNoCol:c.trim,emirates:true,noSide:true,shoulderStripe:'#8e2342'});
 }
 
 /* ---------- Supa Strikas (private family use): my own drawings in the show's style, not official art ---------- */
