@@ -32,3 +32,7 @@ Everything lives in `index.html`:
 - Maths: one generator per topic in `GEN`; topics are listed in `TOPICS`.
 - Oa's look: `CONFIG.character` colours and the `oa()` drawing. Token cost per game: `COST`.
 - Settings such as points per token and arcade length: `CONFIG`.
+
+## Offline and installing
+
+When the page is opened from the web link, it saves itself on the device (a service worker, `sw.js`) so it opens with no internet afterwards. Open it once online first. Use the browser menu's "Add to home screen" to get an app icon. Updates arrive automatically the next time the device is online. If you edit the files, bump `CACHE` in `sw.js`.

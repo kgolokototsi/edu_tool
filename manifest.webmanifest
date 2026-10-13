@@ -1,0 +1,16 @@
+{
+  "name": "Oa's Edu Tool",
+  "short_name": "Oa's Edu Tool",
+  "description": "Maths, reading and games for Oa.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#5b2a9e",
+  "theme_color": "#5b2a9e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

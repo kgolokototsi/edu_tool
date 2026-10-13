@@ -6,6 +6,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Oa's Edu Tool</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#5b2a9e">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
   --font:"Baloo 2","Chalkboard SE","Comic Neue","Comic Sans MS","Marker Felt","Trebuchet MS",system-ui,sans-serif;
@@ -1630,6 +1634,8 @@ document.addEventListener('contextmenu',e=>e.preventDefault());
 document.documentElement.dataset.theme=S.theme||'purple';
 window.EDU={S:()=>S,GEN,TOPICS,BOOKS,numOpts,oa,go,CONFIG,startRound,R:()=>R};
 go(S.theme?'home':'welcome');
+/* offline support: only when served over http(s), never from a saved file */
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){ window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }
 </script>
 </body>
 </html>
