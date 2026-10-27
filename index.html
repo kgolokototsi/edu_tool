@@ -99,9 +99,24 @@ h2{font-size:clamp(26px,4vw,40px);color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.25)
 .objs .r{display:flex;gap:6px;justify-content:center}
 .objs .gone{opacity:.28;text-decoration:line-through;filter:grayscale(1)}
 .vis{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
-.vis .plus{font-size:1.3em;font-weight:900}
+.vis .plus{font-size:clamp(30px,5vw,48px);font-weight:900}
 .grp{border:3px dashed var(--c2);border-radius:20px;padding:6px 10px;background:var(--c3);display:flex;flex-direction:column;align-items:center}
 .bigpic{font-size:clamp(50px,9vw,84px)}
+.qsay{font-size:clamp(20px,3vw,28px);font-weight:800;text-align:center;line-height:1.35;max-width:760px;cursor:pointer}
+.ncard{font-size:clamp(44px,8vw,80px);font-weight:900;background:#fff;border:4px solid var(--c1);border-radius:22px;padding:2px 26px;min-width:1.6em;text-align:center}
+.shape{width:clamp(80px,15vw,130px);height:auto}
+.shapes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:620px}
+.shapes .shape{width:clamp(46px,8.5vw,72px)}
+.clock{width:clamp(170px,30vw,250px);height:auto}
+.coin{height:auto}
+.note{width:clamp(110px,20vw,160px);height:auto}
+.pv{--u:clamp(14px,2.6vw,20px);display:flex;gap:10px;align-items:flex-end}
+.pv .ten{width:var(--u);height:calc(var(--u)*10);border-radius:3px;box-shadow:0 0 0 2px #174a8c;background:repeating-linear-gradient(#2f8cff 0,#2f8cff calc(var(--u) - 2px),#174a8c calc(var(--u) - 2px),#174a8c var(--u))}
+.pv .ones{display:flex;flex-direction:column-reverse;gap:3px}
+.pv .one{width:var(--u);height:calc(var(--u) - 3px);border-radius:3px;background:#ff9248;box-shadow:0 0 0 2px #9c4a12}
+.sgrp{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sfig{height:clamp(90px,16vw,140px)}
+.sfig svg{height:100%;width:auto}
 .hint{background:#fff7d1;border:3px solid var(--accent-d);border-radius:18px;padding:8px 16px;font-weight:800;font-size:clamp(17px,2.4vw,22px);text-align:center;animation:pop .3s}
 .coach{display:flex;align-items:center;gap:12px}
 .coach .fig{height:clamp(84px,15vh,130px);width:auto;flex:0 0 auto}
@@ -237,7 +252,8 @@ const CONFIG = {
   tokenCost: 50,       // points for one arcade token
   roundLen: 10,        // questions in a maths round
   arcadeSeconds: 75,
-  bookBonus: 20
+  bookBonus: 20,
+  money: { sym:'R', word:'rand', coins:[1,2,5], notes:[10,20] }  // Money topic: South African rand
 };
 
 /* ---------- helpers ---------- */
@@ -388,6 +404,40 @@ function numOpts(ans,n=4,extra=[]){
   return shuffle([...set]).map(String);
 }
 const seqText = (seq,i) => seq.map((v,j)=>j===i?'{{slot}}':v).join(', ');
+const ncard = v => `<span class="ncard">${v}</span>`;
+const NAMED = [['apples','🍎'],['stars','⭐'],['balls','⚽'],['fish','🐟'],['cars','🚗'],['balloons','🎈'],['oranges','🍊'],['medals','🏅']];
+const SHAPES = {triangle:3, square:4, rectangle:4, pentagon:5, hexagon:6, circle:0};
+const SHAPE_COL = ['#ff6b6b','#2f8cff','#ffc93c','#3ccf7a','#a66bff','#ff9248'];
+function shapeSVG(name,col){
+  const k=SHAPES[name], st=`fill="${col}" stroke="#222" stroke-width="4" stroke-linejoin="round"`;
+  const body = name==='circle' ? `<circle cx="50" cy="50" r="42" ${st}/>`
+    : name==='square' ? `<rect x="12" y="12" width="76" height="76" ${st}/>`
+    : name==='rectangle' ? `<rect x="4" y="26" width="92" height="48" ${st}/>`
+    : `<polygon points="${Array.from({length:k},(_,i)=>{ const a=2*Math.PI*i/k-Math.PI/2, cy={3:62,6:50}[k]||54, r=k===6?44:46; return (50+r*Math.cos(a)).toFixed(1)+','+(cy+r*Math.sin(a)).toFixed(1); }).join(' ')}" ${st}/>`;
+  return `<svg class="shape" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+}
+function clockSVG(h,m){
+  const pt=(deg,r)=>{ const a=(deg-90)*Math.PI/180; return [(50+r*Math.cos(a)).toFixed(1),(50+r*Math.sin(a)).toFixed(1)]; };
+  const hand=(deg,r,w,col)=>{ const [x,y]=pt(deg,r); return `<line x1="50" y1="50" x2="${x}" y2="${y}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`; };
+  const nums=Array.from({length:12},(_,i)=>{ const [x,y]=pt((i+1)*30,36); return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="900" fill="#222">${i+1}</text>`; }).join('');
+  return `<svg class="clock" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#222" stroke-width="4"/>${nums}
+    ${hand((h%12)*30+m/2,21,6,'#2f8cff')}${hand(m*6,33,3.5,'#ff6b6b')}<circle cx="50" cy="50" r="3.5" fill="#222"/></svg>`;
+}
+function moneySVG(v){
+  const sym=CONFIG.money.sym, lbl=`text-anchor="middle" dominant-baseline="central" font-weight="900" fill="#222"`;
+  if(CONFIG.money.notes.includes(v)) return `<svg class="note" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="154" height="74" rx="8" fill="${v>10?'#e9a35a':'#7cc47f'}" stroke="#222" stroke-width="4"/><circle cx="120" cy="40" r="24" fill="#fff" opacity=".45"/><text x="55" y="42" font-size="34" ${lbl}>${sym}${v}</text></svg>`;
+  const gold=v===Math.max.apply(null,CONFIG.money.coins), w=[.8,.9,1][CONFIG.money.coins.indexOf(v)]||1;
+  return `<svg class="coin" style="width:calc(clamp(54px,10vw,80px)*${w})" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="${gold?'#ffc93c':'#d9dee5'}" stroke="#222" stroke-width="5"/><circle cx="50" cy="50" r="34" fill="none" stroke="${gold?'#e29d00':'#9aa3ad'}" stroke-width="4"/><text x="50" y="52" font-size="${String(sym).length>1?24:32}" ${lbl}>${sym}${v}</text></svg>`;
+}
+function blocks(n){
+  const t=Math.floor(n/10), o=n%10;
+  return `<div class="pv">${'<div class="ten"></div>'.repeat(t)}<div class="ones">${'<div class="one"></div>'.repeat(o)}</div></div>`;
+}
+const STORY_CAST = ['oa','shakes','matador','tiger','bo','joe','rasta','klaus'];
+const castName = id => id==='oa' ? 'Oa' : PLAYERS[id].n;
+const castFig = id => `<div class="sfig">${id==='oa'?oa('happy'):player(id)}</div>`;
+const castWith = (id,n,e,gone) => `<div class="sgrp">${castFig(id)}${objs(n,e,gone)}</div>`;
+const clock12 = h => ((h-1)%12+12)%12+1;
 const GEN = {
   count(d){
     const e=pick(OBJ), t=pick(['count','count','groups','share','basket']);
@@ -455,23 +505,144 @@ const GEN = {
     const g=rnd(1,d?10:5), ans=g*t;
     const text = Math.random()<.5 ? `${g} × ${t} = {{slot}}` : `${g} groups of ${t} = {{slot}}`;
     return {text, vis: ans<=20?grp(g,t,e):'', ans, extra:[t,-t], hint:`Count in ${t}s: ${Array.from({length:g},(_,i)=>(i+1)*t).join(', ')}`};
+  },
+  compare(d){
+    const top=d?99:20, t=pick(d?['most','least','more','less','ten','between']:['most','most','least','more','less','between']);
+    if(t==='most'||t==='least'){
+      let a=rnd(1,top), gap=rnd(1,d?20:6), b=a+gap<=top ? a+gap : a-gap;
+      if(d===2 && Math.random()<.4){ const x=rnd(1,9); let y; do y=rnd(1,9); while(y===x); a=x*10+y; b=y*10+x; } // 34 or 43
+      const big=Math.max(a,b), small=Math.min(a,b), most=t==='most';
+      return {text:`Which is ${most?'more':'less'}? {{slot}}`, vis:ncard(a)+ncard(b), ans:most?big:small, opts:[String(a),String(b)],
+        hint: big>=10 && Math.floor(big/10)!==Math.floor(small/10) ? `Look at the tens first. ${big} has more tens.` : `Count up: ${small} comes before ${big}, so ${big} is more.`};
+    }
+    if(t==='more'){ const n=rnd(d?10:1,top-1); return {text:`1 more than ${n} is {{slot}}`, ans:n+1, hint:`Count on one: ${n}, …`}; }
+    if(t==='less'){ const n=rnd(d?11:2,top); return {text:`1 less than ${n} is {{slot}}`, ans:n-1, hint:`Count back one from ${n}.`}; }
+    if(t==='ten'){
+      if(Math.random()<.5){ const n=rnd(1,89); return {text:`10 more than ${n} is {{slot}}`, ans:n+10, extra:[9,11,-10], hint:`Add one ten: the tens digit goes up by 1.`}; }
+      const n=rnd(11,99); return {text:`10 less than ${n} is {{slot}}`, ans:n-10, extra:[9,11,10], hint:`Take away one ten: the tens digit goes down by 1.`};
+    }
+    const n=rnd(1,top-1);
+    return {text:`${n-1}, {{slot}}, ${n+1}`, ans:n, hint:`Which number comes straight after ${n-1}?`};
+  },
+  shapes(d){
+    const names=d?['triangle','square','circle','pentagon','hexagon']:['triangle','square','circle'];
+    const t=pick(['sides','corners','find','find']);
+    if(t==='find'){
+      const want=pick(names), total=rnd(5,d?10:7), n=rnd(1,Math.min(total-1,6));
+      const others=names.filter(x=>x!==want);
+      const set=shuffle(Array.from({length:total},(_,i)=>i<n?want:pick(others)));
+      return {text:`How many ${want}s? {{slot}}`, vis:`<div class="shapes">${set.map(s=>shapeSVG(s,pick(SHAPE_COL))).join('')}</div>`, ans:n,
+        hint: want==='circle' ? 'A circle is round, with no corners. Touch each one and count.' : `A ${want} has ${SHAPES[want]} sides. Touch each ${want} and count.`};
+    }
+    const pool=(d?names.concat('rectangle'):['triangle','square','rectangle']).filter(x=>d===2||x!=='circle');
+    const s=pick(pool), word=t==='sides'?'sides':'corners';
+    return {text:`This ${s} has {{slot}} ${word}`, vis:shapeSVG(s,pick(SHAPE_COL)), ans:SHAPES[s],
+      hint: s==='circle' ? 'A circle is round all the way. Can you find a straight side or a pointy corner?' : t==='sides' ? 'Run your finger along each straight side and count.' : 'Touch each pointy corner and count.'};
+  },
+  time(d){
+    const h=rnd(1,12), half=d>0 && Math.random()<.5;
+    const opts=[...new Set([h,clock12(h+1),clock12(h-1),clock12(h+2)])].map(String);
+    if(d===2 && Math.random()<.35){
+      return {text:`1 hour later it is {{slot}} o'clock`, vis:clockSVG(h,0), ans:clock12(h+1), opts:[...new Set([clock12(h+1),h,clock12(h+2),clock12(h-1)])].map(String),
+        hint:`It is ${h} o'clock now. Move the short hand on to the next number.`};
+    }
+    if(half) return {text:`half past {{slot}}`, vis:clockSVG(h,30), ans:h, opts,
+      hint:`The long hand points to 6, so it is half past. The short hand has just gone past ${h}.`};
+    return {text:`{{slot}} o'clock`, vis:clockSVG(h,0), ans:h, opts,
+      hint:`The long hand points to 12, so it is o'clock. Look where the short hand points.`};
+  },
+  place(d){
+    const n=rnd(11,d?99:49), t=Math.floor(n/10), o=n%10;
+    const k=pick(d?['count','tens','ones','build','expand']:['count','count','tens','ones','build']);
+    const swap=o*10+t-n;
+    if(k==='count') return {text:'How many? {{slot}}', vis:blocks(n), ans:n, extra:[10,-10,swap], hint:`Count the tens: ${Array.from({length:t},(_,i)=>(i+1)*10).join(', ')}. Then count on the ones.`};
+    if(k==='tens') return {text:`${n} has {{slot}} tens`, vis:d?'':blocks(n), ans:t, extra:[o-t], hint:'In a two-digit number, the first digit tells you the tens.'};
+    if(k==='ones') return {text:`${n} has {{slot}} ones`, vis:d?'':blocks(n), ans:o, extra:[t-o], hint:'In a two-digit number, the last digit tells you the ones.'};
+    if(k==='build') return {text:`${t} tens and ${o} ones = {{slot}}`, vis:d?'':blocks(n), ans:n, extra:[10,-10,swap], hint:`${t} tens is ${t*10}. Then add ${o} ones.`};
+    if(o===0 || Math.random()<.5) return {text:`${t*10} + ${o} = {{slot}}`, ans:n, extra:[10,-10,swap], hint:`Put the tens and the ones together: ${t} tens and ${o} ones.`};
+    return {text:`${n} = {{slot}} + ${o}`, ans:t*10, extra:[10,-10], hint:`How many tens are in ${n}? Write them as a tens number.`};
+  },
+  story(d){
+    const [A,B]=shuffle(STORY_CAST), a1=castName(A), b1=castName(B), top=d?20:10, [w,e]=pick(NAMED);
+    const k=pick(d?['add','goals','take','more','need']:['add','goals','take']);
+    if(k==='goals'){ const a=rnd(1,Math.min(6,top-1)), b=rnd(1,Math.min(6,top-a));
+      return {say:`${a1} scores ${a} goals in the first half and ${b} goals in the second half. How many goals is that?`,
+        vis:castWith(A,a,'⚽')+'<span class="plus">+</span>'+objs(b,'⚽'), text:'{{slot}} goals', ans:a+b, hint:`${a} + ${b}. Count on from ${Math.max(a,b)}.`}; }
+    if(k==='add'){ const a=rnd(1,top-1), b=rnd(1,top-a);
+      return {say:`${a1} has ${a} ${w}. ${b1} has ${b} ${w}. How many ${w} altogether?`,
+        vis:castWith(A,a,e)+'<span class="plus">+</span>'+castWith(B,b,e), text:`{{slot}} ${w}`, ans:a+b, hint:`${a} + ${b}. Count on from ${Math.max(a,b)}.`}; }
+    if(k==='take'){ const a=rnd(3,top), b=rnd(1,a-1);
+      return {say:`${a1} has ${a} ${w}. ${a1} gives ${b} to ${b1}. How many ${w} does ${a1} have now?`,
+        vis:castWith(A,a,e,b)+castFig(B), text:`{{slot}} ${w}`, ans:a-b, hint:`${a} take away ${b}. Count back ${b} from ${a}.`}; }
+    if(k==='more'){ const b=rnd(1,top-2), a=rnd(b+1,top-1);
+      return {say:`${a1} has ${a} ${w}. ${b1} has ${b} ${w}. How many more ${w} does ${a1} have?`,
+        vis:castWith(A,a,e)+castWith(B,b,e), text:'{{slot}} more', ans:a-b, hint:`Match them up in pairs. How many does ${a1} have left over?`}; }
+    const goal=pick([10,10,top]), a=rnd(1,goal-1);
+    return {say:`${a1} wants ${goal} ${w}. ${a1} has ${a}. How many more does ${a1} need?`,
+      vis:castWith(A,a,e), text:'{{slot}} more', ans:goal-a, hint:`Count on from ${a} up to ${goal}.`};
+  },
+  half(d){
+    const [w,e]=pick(NAMED), k=pick(d===2?['half','share','deal','whole','quarter']:d?['half','share','deal','whole']:['half','half','share','deal']);
+    if(k==='share'){ const g=d?rnd(2,4):2, p=rnd(1,d?5:4);
+      return {text:`Share ${g*p} ${e} fairly`, basket:{g,p,e}, basketOnly:true, ans:g*p, hint:'Give one to each basket, then go round again.', reveal:`Each basket gets ${p}.`}; }
+    if(k==='deal'){ const g=d?rnd(2,4):2, p=rnd(1,d?5:4);
+      return {say:`Share ${g*p} ${w} fairly between ${g} friends. How many does each friend get?`, vis:objs(g*p,e), text:'Each gets {{slot}}', ans:p,
+        hint:'Deal them out one at a time, like cards, until none are left.'}; }
+    if(k==='whole'){ const h=rnd(1,d===2?10:6);
+      return {text:`Half of {{slot}} is ${h}`, ans:2*h, hint:`Double ${h}: ${h} + ${h}.`}; }
+    if(k==='quarter'){ const q=rnd(1,5);
+      return {text:`A quarter of ${4*q} is {{slot}}`, vis:objs(4*q,e), ans:q, extra:[q], hint:`A quarter means 4 equal groups. Halve ${4*q}, then halve again.`}; }
+    const n=2*rnd(1,d?10:5);
+    return {text:`Half of ${n} is {{slot}}`, vis:n<=20?objs(n,e):'', ans:n/2, extra:[n/2], hint:'Make 2 equal groups. What number doubled makes '+n+'?'};
+  },
+  money(d){
+    const M=CONFIG.money, sym=M.sym, k=pick(d===2?['count','count','change','coins']:d?['count','count','change']:['count']);
+    const shown=v=>sym+v, spoken=v=>v+' '+M.word; // the sentence on screen, and how it is read aloud
+    if(k==='change'){
+      const have=d===2?pick([10,20]):10, cost=rnd(1,have-1);
+      const [item,ie]=pick([['ice cream','🍦'],['ball','⚽'],['juice','🧃'],['crayon box','🖍️'],['kite','🪁'],['book','📕']]);
+      const line=m=>`You have ${m(have)}. The ${item} costs ${m(cost)}. How much change do you get?`;
+      return {say:line(shown), aloud:line(spoken), vis:moneySVG(have)+ncard(`${ie} ${sym}${cost}`), text:`Change: ${sym}{{slot}}`, ans:have-cost,
+        hint:`Count on from ${cost} up to ${have}.`};
+    }
+    if(k==='coins'){
+      const c=pick(M.coins.slice(1)), n=rnd(2,5), line=m=>`How many ${m(c)} coins make ${m(c*n)}?`;
+      return {say:line(shown), aloud:line(spoken), vis:moneySVG(c), text:'{{slot}} coins', ans:n,
+        hint:`Count in ${c}s until you get to ${c*n}: ${c}, ${2*c}, …`};
+    }
+    const pool=d===0 ? M.coins.slice(0,2) : d===1 ? M.coins : M.coins.concat(M.notes[0]);
+    const cs=Array.from({length:rnd(2,d?4:3)},()=>pick(pool)).sort((a,b)=>b-a);
+    while(cs.length>2 && cs.reduce((a,b)=>a+b,0)>(d?20:10)) cs.shift();
+    let run=0; const steps=cs.map(v=>run+=v);
+    return {text:`How much? ${sym}{{slot}}`, vis:cs.map(moneySVG).join(''), ans:run, extra:[-cs[cs.length-1]],
+      hint:`Start with the biggest and count on: ${steps.join(', ')}.`};
   }
 };
 const TOPICS = [
   {id:'count', name:'Counting & Groups',    icon:'🧺', desc:'Count, group and share'},
+  {id:'compare', name:'More or Less',       icon:'⚖️', desc:'Bigger, smaller, 1 more, 1 less'},
   {id:'skip',  name:'Skip Counting & Doubles', icon:'🦘', desc:'Jump in 2s, 5s and 10s'},
   {id:'add10', name:'Adding to 10',         icon:'🍎', desc:'Small number adding'},
+  {id:'shapes', name:'Shapes',              icon:'🔺', desc:'Sides, corners and spotting shapes'},
   {id:'add20', name:'Adding to 20',         icon:'🚀', desc:'Bigger numbers, make ten'},
+  {id:'time',  name:'Telling the Time',     icon:'🕒', desc:"O'clock and half past"},
+  {id:'place', name:'Tens & Ones',          icon:'🧱', desc:'What each digit means'},
   {id:'add2d', name:'Big Number Adding',    icon:'🔟', desc:'Two-digit sums, no carrying'},
   {id:'sub',   name:'Taking Away',          icon:'🏴‍☠️', desc:'Subtraction'},
+  {id:'story', name:'Story Sums',           icon:'⚽', desc:'Maths with the Supa Strikas'},
+  {id:'half',  name:'Halves & Sharing',     icon:'🍕', desc:'Share fairly, halves and quarters'},
+  {id:'money', name:'Money',                icon:'🪙', desc:'Count coins, work out change'},
   {id:'times', name:'Times Tables',         icon:'✖️', desc:'Groups of 2, 3, 4, 5 and 10'}
 ];
 const hist = id => S.hist[id]||[];
 const accOf = id => { const h=hist(id); return h.length ? h.reduce((a,b)=>a+b,0)/h.length : 0; };
 const mastered = id => hist(id).length>=8 && accOf(id)>=.8;
 const starsOf = id => !mastered(id) ? 0 : accOf(id)>=.99 ? 3 : accOf(id)>=.9 ? 2 : 1;
-const topicOpen = i => S.unlockAll || i===0 || mastered(TOPICS[i-1].id);
+const topicOpen = i => S.unlockAll || i===0 || !!(S.opened||{})[TOPICS[i].id] || mastered(TOPICS[i-1].id);
 const levelOf = id => Math.min(2, Math.floor(((S.stats[id]||{}).c||0)/12));
+/* New topics now sit between the first seven, so keep open whatever the old chain had already opened */
+if(!S.opened){ const old=['count','skip','add10','add20','add2d','sub','times']; S.opened={};
+  old.forEach((id,i)=>{ if(i===0 || mastered(old[i-1])) S.opened[id]=true; }); save(); }
 
 /* ---------- Books: early-reader stories (vocabulary grows book by book) ---------- */
 const BOOKS = [
@@ -885,8 +1056,8 @@ function makeMathQ(topic){
   const d=levelOf(topic.id); let q;
   for(let k=0;k<10;k++){
     q=GEN[topic.id](d); q.ans=String(q.ans); q.kind='num';
-    if(!q.basketOnly) q.opts=numOpts(+q.ans,4,q.extra||[]);
-    q.sig=q.text+q.ans;
+    if(!q.basketOnly && !q.opts) q.opts=numOpts(+q.ans,4,q.extra||[]);
+    q.sig=(q.say||'')+q.text+q.ans;
     if(!R.recent.includes(q.sig)) break;
   }
   R.recent.push(q.sig); if(R.recent.length>5) R.recent.shift();
@@ -988,6 +1159,7 @@ function showQuestion(){
     <div class="qhead"><button class="btn alt back" data-a="${R.kind==='math'?'math':'read'}">◀</button>
       <div class="dots">${dots}</div><span id="streak">🔥 ${R.streak}</span><span>⭐ ${R.score}</span></div>
     <div class="card qcard">
+      ${q.say?`<div class="qsay" data-a="say" data-v="${q.aloud||q.say}">🔊 ${q.say}</div>`:''}
       ${q.vis?`<div class="vis">${q.vis}</div>`:''}
       <div class="qtext">${q.text.replace('{{slot}}',slotHTML)}</div>
       <div class="hint" id="hint" hidden></div>

@@ -1,5 +1,5 @@
 /* Oa's Edu Tool: offline support. Network first (so updates arrive), cache as the fallback. */
-const CACHE = 'oa-edu-tool-v1';
+const CACHE = 'oa-edu-tool-v2';
 const FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {

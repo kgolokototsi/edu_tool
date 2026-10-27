@@ -7,7 +7,7 @@ Tap anywhere once to start the music.
 
 ## What is in it
 
-- **Maths** (adaptive; 8 out of 10 right opens the next topic): counting and grouping, skip counting (2s, 5s, 10s) and doubling, adding to 10, adding to 20, two-digit adding with no carrying, taking away, times tables (2, 5, 10, then 3 and 4). Questions get harder as he gets them right.
+- **Maths** (adaptive; 8 out of 10 right opens the next topic): counting and grouping, more or less (bigger/smaller, 1 more, 1 less, 10 more, the number between), skip counting (2s, 5s, 10s) and doubling, adding to 10, shapes (sides, corners, spotting shapes), adding to 20, telling the time (o'clock, half past, one hour later), tens and ones, two-digit adding with no carrying, taking away, story sums with the Supa Strikas (tap the sentence to hear it), halves and sharing (including sharing into baskets, and quarters), money (count rand coins, work out change), times tables (2, 5, 10, then 3 and 4). Questions get harder as he gets them right.
 - **Reading:** seven Supa Strikas stories starring Shakes, El Matador, Twisting Tiger and Big Bo (player and team names, shirt numbers, a world tour of the Super League teams, and one where Oa trains with them) plus eight early-reader story books. New words are highlighted in yellow, tapping any word says it, and finished books add words to "My Words". Some stories star Oa.
 - **Three ways to answer:** type it, choose it, or drag it (including dragging things into baskets to make groups).
 - **Points and high score:** first-try answers score 10 (plus streak bonus), second try 5. A round's score is multiplied by accuracy (×1 at 90%+, ×0.8 at 70%+, otherwise ×0.6), so wrong answers lower the high score. Every 50 points earns an arcade token.
@@ -29,7 +29,7 @@ Everything lives in `index.html`:
 
 - Supa Strikas players and kit colours: `PLAYERS` and `KIT` (art tokens look like `SS:shakes`, `SS:joe:cheer`). These are my own drawings in the show's style (red kit with the big star, Big Bo in yellow), made for private family use, not official art. Oa and the players share one drawing function, `toon()`.
 - Stories: the `BOOKS` array (pages of text plus emoji pictures, `OA` for Oa, a `quiz` of three fill-in-the-gap questions).
-- Maths: one generator per topic in `GEN`; topics are listed in `TOPICS`.
+- Maths: one generator per topic in `GEN`; topics are listed in `TOPICS` in unlock order. A generator can return its own `opts`, and a `say` sentence (with `aloud` for how it is read out). Topics Oa has opened stay open (`S.opened`), so a new topic can go anywhere in the list. Currency for the Money topic: `CONFIG.money`.
 - Oa's look: `CONFIG.character` colours and the `oa()` drawing. Token cost per game: `COST`.
 - Settings such as points per token and arcade length: `CONFIG`.
 
