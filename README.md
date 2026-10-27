@@ -14,7 +14,11 @@ Tap anywhere once to start the music.
 - **Games** (each play uses 1 token, earned with points):
   - **Catch & Dodge:** catch insulin pens (+1 heart), coins and low-carb snacks; dodge high-carb sweets and food. It is a game, not medical advice.
   - **Penalty Kicks:** five shots against a keeper. Tap in the goal to aim; the top corners are unsaveable but easy to miss.
-  - **Tic Tac Toe** and **Connect 4:** Easy, Tricky or Genius computer, or 2 players on one tablet. Wins, draws and losses earn points.
+  - **Tic Tac Toe:** Easy, Tricky or Genius computer, or 2 players on one tablet. Wins, draws and losses earn points.
+  - **Supa Pairs:** memory match with the Supa Strikas and Oa (names on the cards). Easy 6 pairs, Tricky 8, Genius 10, or 2 players.
+  - **Keepy Uppy:** tap the ball to keep it off the grass. Three balls; the best run in a row is the score.
+  - **Red Card!:** players pop out of holes for 40 seconds. Tap the rivals in black for a red card, not the Supa Strikas in red.
+  - **Copy the Coach:** Coach Ledige lights up four buttons with notes; copy the pattern as it grows. One second chance.
 - **Oa the character:** drawn in the same style as the Supa Strikas players (athletic proportions, thin outline), from Oa's photo: curly high-top, big gap-toothed grin, the 2026-27 Real Madrid home kit (white, dark green collar and cuffs, pink shoulder stripes, crest, "Emirates FLY BETTER"), number 10 on the shorts and the back.
 - **Themes:** purple, teal, blue or green (the 🎨 button).
 - **Sound:** the music and sound effects are generated in code (WebAudio), there are no audio files. 🔊 mutes.
@@ -31,6 +35,7 @@ Everything lives in `index.html`:
 - Stories: the `BOOKS` array (pages of text plus emoji pictures, `OA` for Oa, a `quiz` of three fill-in-the-gap questions).
 - Maths: one generator per topic in `GEN`; topics are listed in `TOPICS` in unlock order. A generator can return its own `opts`, and a `say` sentence (with `aloud` for how it is read out). Topics Oa has opened stay open (`S.opened`), so a new topic can go anywhere in the list. Currency for the Money topic: `CONFIG.money`.
 - Oa's look: `CONFIG.character` colours and the `oa()` drawing. Token cost per game: `COST`.
+- Games added after Tic Tac Toe share one handle, `G`, which `go()` stops when the screen changes. They size everything in px from JavaScript (no CSS `min()`/`clamp()`), because Oa's tablet browser is older.
 - Settings such as points per token and arcade length: `CONFIG`.
 
 ## Offline and installing

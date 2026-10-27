@@ -103,19 +103,19 @@ h2{font-size:clamp(26px,4vw,40px);color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.25)
 .grp{border:3px dashed var(--c2);border-radius:20px;padding:6px 10px;background:var(--c3);display:flex;flex-direction:column;align-items:center}
 .bigpic{font-size:clamp(50px,9vw,84px)}
 .qsay{font-size:clamp(20px,3vw,28px);font-weight:800;text-align:center;line-height:1.35;max-width:760px;cursor:pointer}
-.ncard{font-size:clamp(44px,8vw,80px);font-weight:900;background:#fff;border:4px solid var(--c1);border-radius:22px;padding:2px 26px;min-width:1.6em;text-align:center}
-.shape{width:clamp(80px,15vw,130px);height:auto}
+.ncard{font-size:60px;font-size:clamp(44px,8vw,80px);font-weight:900;background:#fff;border:4px solid var(--c1);border-radius:22px;padding:2px 26px;min-width:1.6em;text-align:center}
+.shape{width:110px;width:clamp(80px,15vw,130px);height:auto}
 .shapes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:620px}
-.shapes .shape{width:clamp(46px,8.5vw,72px)}
-.clock{width:clamp(170px,30vw,250px);height:auto}
+.shapes .shape{width:60px;width:clamp(46px,8.5vw,72px)}
+.clock{width:210px;width:clamp(170px,30vw,250px);height:auto}
 .coin{height:auto}
-.note{width:clamp(110px,20vw,160px);height:auto}
-.pv{--u:clamp(14px,2.6vw,20px);display:flex;gap:10px;align-items:flex-end}
+.note{width:140px;width:clamp(110px,20vw,160px);height:auto}
+.pv{--u:18px;display:flex;gap:10px;align-items:flex-end}
 .pv .ten{width:var(--u);height:calc(var(--u)*10);border-radius:3px;box-shadow:0 0 0 2px #174a8c;background:repeating-linear-gradient(#2f8cff 0,#2f8cff calc(var(--u) - 2px),#174a8c calc(var(--u) - 2px),#174a8c var(--u))}
 .pv .ones{display:flex;flex-direction:column-reverse;gap:3px}
 .pv .one{width:var(--u);height:calc(var(--u) - 3px);border-radius:3px;background:#ff9248;box-shadow:0 0 0 2px #9c4a12}
 .sgrp{display:flex;flex-direction:column;align-items:center;gap:4px}
-.sfig{height:clamp(90px,16vw,140px)}
+.sfig{height:120px;height:clamp(90px,16vw,140px)}
 .sfig svg{height:100%;width:auto}
 .hint{background:#fff7d1;border:3px solid var(--accent-d);border-radius:18px;padding:8px 16px;font-weight:800;font-size:clamp(17px,2.4vw,22px);text-align:center;animation:pop .3s}
 .coach{display:flex;align-items:center;gap:12px}
@@ -218,16 +218,31 @@ input.num{font-size:34px;width:140px;text-align:center;border:4px solid var(--c1
 .cell{height:calc((min(92vw,58vh) - 20px)/3);border-radius:24px;border:4px solid var(--c1);background:#fff;box-shadow:0 7px 0 rgba(0,0,0,.22);font-size:clamp(46px,13vw,100px);display:flex;align-items:center;justify-content:center;padding:0}
 .cell:active{transform:translateY(4px)}
 .cell.win{background:var(--accent);animation:pop .5s}
-#c4board{width:min(96vw,calc(58vh*7/6));display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:#2b61d6;border:5px solid #1b3f9c;border-radius:20px;padding:8px;margin:6px auto;box-shadow:0 8px 0 rgba(0,0,0,.25)}
-.c4col{display:flex;flex-direction:column;gap:4px;background:none;border:0;padding:0;border-radius:12px}
-.c4col:active{background:rgba(255,255,255,.18)}
-.hole{height:calc((min(96vw,calc(58vh*7/6)) - 50px)/7);border-radius:50%;background:#eaf1ff;box-shadow:inset 0 4px 6px rgba(0,0,0,.35);position:relative;overflow:hidden;display:block}
-.disc{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:50%;animation:dropin .45s cubic-bezier(.4,0,.8,.6) both}
-.disc.p1{background:radial-gradient(circle at 35% 30%,#fff3a0,#ffc93c 55%,#d99a00)}
-.disc.p2{background:radial-gradient(circle at 35% 30%,#ffb0b0,#ff5a5a 55%,#c42b2b)}
-.disc.win{box-shadow:0 0 0 4px #fff,0 0 14px 6px #fff;animation:dropin .45s both,pulse .7s .45s infinite alternate}
-@keyframes dropin{from{transform:translateY(calc(var(--d)*-100%))}to{transform:none}}
-@keyframes pulse{to{transform:scale(1.12)}}
+/* Newer games: every size is set in px from JS, so they work on older tablet browsers without min()/clamp() */
+.garea{position:relative;flex:1;min-height:260px;border:4px solid var(--c1);border-radius:26px;overflow:hidden;touch-action:none}
+.garea.grass{background:linear-gradient(#9fdcff 0,#dff4ff 82%,#46b34b 82%,#46b34b 100%)}
+.garea.pitch{background:repeating-linear-gradient(90deg,#4cb84f 0,#4cb84f 80px,#45ad48 80px,#45ad48 160px)}
+.pcard{position:absolute;border-radius:16px;border:4px solid var(--c1);background:var(--c2);box-shadow:0 5px 0 rgba(0,0,0,.22);overflow:hidden;transition:transform .15s}
+.pcard.flip{transform:scaleX(0)}
+.pcard.up{background:#fff}
+.pcard.done{background:#fff7c2;border-color:var(--good)}
+.pcard .back{height:100%;display:flex;align-items:center;justify-content:center;font-size:2.6em}
+.pcard .face{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px}
+.pcard .face svg{height:76%;width:auto;display:block}
+.pcard .face b{line-height:1.05;text-align:center;color:var(--ink)}
+.kball{position:absolute;left:0;top:0;will-change:transform;pointer-events:none;z-index:2}
+.kball svg{width:100%;height:100%;display:block}
+.koa{position:absolute;left:3%;bottom:4%;height:38%;pointer-events:none}
+.koa svg{height:100%;width:auto;display:block}
+.kmsg{position:absolute;left:0;right:0;top:12%;text-align:center;font-size:40px;font-weight:900;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.4);pointer-events:none}
+.ghole{position:absolute;border-radius:50%;background:#1f4d1d;box-shadow:inset 0 6px 10px rgba(0,0,0,.5)}
+.gcell{position:absolute;overflow:hidden}
+.gmole{position:absolute;left:0;right:0;bottom:0;height:100%;text-align:center;transform:translateY(105%);transition:transform .16s ease-out}
+.gmole.up{transform:translateY(6%)}
+.gmole svg{height:100%;width:auto;display:inline-block}
+.gcard{position:absolute;left:50%;top:2%;font-size:40px;margin-left:14px;animation:pop .3s}
+.spad{position:absolute;border-radius:28px;border:5px solid rgba(0,0,0,.25);box-shadow:0 8px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;opacity:.6;transition:transform .1s,opacity .1s}
+.spad.lit{opacity:1;transform:scale(1.06);box-shadow:0 0 0 6px #fff,0 0 30px 10px #fff}
 @media (max-height:560px){.hero .fig{height:min(46vh,260px)}.qcard{min-height:140px}.scene{height:36vh}}
 </style>
 </head>
@@ -265,7 +280,7 @@ const clone = o => JSON.parse(JSON.stringify(o));
 
 /* ---------- Storage ---------- */
 const KEY = 'eduTool.oa.v1';
-const DEF = { theme:null, points:0, spent:0, best:0, arcadeBest:0, hist:{}, stats:{}, booksDone:{}, words:[], mute:false, unlockAll:false, penBest:0, ttt:{w:0,d:0,l:0}, c4:{w:0,d:0,l:0} };
+const DEF = { theme:null, points:0, spent:0, best:0, arcadeBest:0, hist:{}, stats:{}, booksDone:{}, words:[], mute:false, unlockAll:false, penBest:0, ttt:{w:0,d:0,l:0}, pairsBest:{easy:0,tricky:0,genius:0}, keepyBest:0, redBest:0, simonBest:0 };
 let S = (()=>{ try{ const r=localStorage.getItem(KEY); if(r) return Object.assign(clone(DEF),JSON.parse(r)); }catch(e){} return clone(DEF); })();
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
 const tokens = () => Math.max(0, Math.floor(S.points/CONFIG.tokenCost) - S.spent);
@@ -367,11 +382,13 @@ const Snd = {
       case 'kick': this.sweep(260,70,t,.18,'square',.22); break;
       case 'goal': seq([12,16,19,24],.09,'square',.2,.1); seq([0,7,12],.1,'triangle',.4,.22); break;
       case 'lose': seq([12,9,5,0],.15,'triangle',.3,.2); break;
+      case 'p0': case 'p1': case 'p2': case 'p3': this.tone(hz([7,12,16,19][+name[1]]),t,.4,'triangle',.32); break;
     }
   },
-  ensure(){ this.resume(); if(this.ctx && !this.timer) this.start((cur==='arcade'||cur==='pen')?'arcade':'jingle'); }
+  ensure(){ this.resume(); if(this.ctx && !this.timer && tune()) this.start(tune()); }
 };
 let arcade=null; // arcade run state (also used above to pick the music)
+const tune = () => cur==='simon' ? null : ['arcade','pen','keepy','red'].includes(cur) ? 'arcade' : 'jingle'; // null: quiet, so the pad notes can be heard
 
 /* ---------- Art: cartoon SVG ---------- */
 const penSVG = () => `<svg viewBox="0 0 100 100" class="pen" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(-35 50 50)">
@@ -427,7 +444,7 @@ function moneySVG(v){
   const sym=CONFIG.money.sym, lbl=`text-anchor="middle" dominant-baseline="central" font-weight="900" fill="#222"`;
   if(CONFIG.money.notes.includes(v)) return `<svg class="note" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="154" height="74" rx="8" fill="${v>10?'#e9a35a':'#7cc47f'}" stroke="#222" stroke-width="4"/><circle cx="120" cy="40" r="24" fill="#fff" opacity=".45"/><text x="55" y="42" font-size="34" ${lbl}>${sym}${v}</text></svg>`;
   const gold=v===Math.max.apply(null,CONFIG.money.coins), w=[.8,.9,1][CONFIG.money.coins.indexOf(v)]||1;
-  return `<svg class="coin" style="width:calc(clamp(54px,10vw,80px)*${w})" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="${gold?'#ffc93c':'#d9dee5'}" stroke="#222" stroke-width="5"/><circle cx="50" cy="50" r="34" fill="none" stroke="${gold?'#e29d00':'#9aa3ad'}" stroke-width="4"/><text x="50" y="52" font-size="${String(sym).length>1?24:32}" ${lbl}>${sym}${v}</text></svg>`;
+  return `<svg class="coin" style="width:${Math.round(70*w)}px;width:calc(clamp(54px,10vw,80px)*${w})" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="${gold?'#ffc93c':'#d9dee5'}" stroke="#222" stroke-width="5"/><circle cx="50" cy="50" r="34" fill="none" stroke="${gold?'#e29d00':'#9aa3ad'}" stroke-width="4"/><text x="50" y="52" font-size="${String(sym).length>1?24:32}" ${lbl}>${sym}${v}</text></svg>`;
 }
 function blocks(n){
   const t=Math.floor(n/10), o=n%10;
@@ -1255,11 +1272,12 @@ function updBar(){
 }
 function go(screen,arg){
   if(arcade && screen!=='arcade') stopArcade();
-  if(screen!=='pen') P=null; if(screen!=='ttt') T=null; if(screen!=='c4') C=null;
+  stopGame();
+  if(screen!=='pen') P=null; if(screen!=='ttt') T=null;
   const ae=$('#arcadeEnd'); if(ae) ae.remove();
   cur=screen; if(arg!==undefined) rd=arg;
-  if(Snd.ctx) Snd.start((screen==='arcade'||screen==='pen')?'arcade':'jingle');
-  ({home:viewHome,welcome:viewWelcome,math:viewMath,read:viewRead,book:viewBook,words:viewWords,quiz:showQuestion,result:viewResult,arcadeIntro:viewArcadeIntro,arcade:viewArcade,games:viewGames,penIntro:viewPenIntro,pen:viewPen,tttIntro:viewTttIntro,ttt:viewTtt,c4Intro:viewC4Intro,c4:viewC4})[screen]();
+  if(Snd.ctx){ if(tune()) Snd.start(tune()); else Snd.stop(); }
+  ({home:viewHome,welcome:viewWelcome,math:viewMath,read:viewRead,book:viewBook,words:viewWords,quiz:showQuestion,result:viewResult,arcadeIntro:viewArcadeIntro,arcade:viewArcade,games:viewGames,penIntro:viewPenIntro,pen:viewPen,tttIntro:viewTttIntro,ttt:viewTtt,pairsIntro:viewPairsIntro,pairs:viewPairs,keepyIntro:viewKeepyIntro,keepy:viewKeepy,redIntro:viewRedIntro,red:viewRed,simonIntro:viewSimonIntro,simon:viewSimon})[screen]();
   updBar();
 }
 function viewWelcome(){
@@ -1461,7 +1479,7 @@ function endArcade(){
 }
 
 /* ---------- Games hub + shared bits ---------- */
-const COST = { arcade:1, pen:1, ttt:1, c4:1 };      // tokens per play; set to 0 to make a game free
+const COST = { arcade:1, pen:1, ttt:1, pairs:1, keepy:1, red:1, simon:1 };      // tokens per play; set to 0 to make a game free
 const ballSVG = () => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#1a1420" stroke-width="5"/><path d="M50 30 L69 44 L62 66 L38 66 L31 44Z" fill="#1a1420"/><path d="M50 30 V6 M69 44 L92 36 M62 66 L76 88 M38 66 L24 88 M31 44 L8 36" stroke="#1a1420" stroke-width="5" stroke-linecap="round"/></svg>`;
 const keeperSVG = () => `<svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
   <rect x="33" y="92" width="13" height="42" rx="4" fill="#222" stroke="#111" stroke-width="3"/><rect x="54" y="92" width="13" height="42" rx="4" fill="#222" stroke="#111" stroke-width="3"/>
@@ -1495,7 +1513,10 @@ function viewGames(){
     <button class="big" style="--bc:#ffd23f" data-a="arcadeIntro"><span class="ic">🥜</span><span>Catch &amp; Dodge<small>Insulin, coins, low-carb snacks</small></span></button>
     <button class="big" style="--bc:#6fd16a" data-a="penIntro"><span class="ic">⚽</span><span>Penalty Kicks<small>Beat the keeper</small></span></button>
     <button class="big" style="--bc:#ff8a8a" data-a="tttIntro"><span class="ic">❌</span><span>Tic Tac Toe<small>Three in a row</small></span></button>
-    <button class="big" style="--bc:#7ec8ff" data-a="c4Intro"><span class="ic">🔴</span><span>Connect 4<small>Four in a line</small></span></button>
+    <button class="big" style="--bc:#7ec8ff" data-a="pairsIntro"><span class="ic">🃏</span><span>Supa Pairs<small>Find the matching players</small></span></button>
+    <button class="big" style="--bc:#a8e66a" data-a="keepyIntro"><span class="ic">🦶</span><span>Keepy Uppy<small>Don't let the ball drop</small></span></button>
+    <button class="big" style="--bc:#ff6b6b" data-a="redIntro"><span class="ic">🟥</span><span>Red Card!<small>Catch the rivals popping up</small></span></button>
+    <button class="big" style="--bc:#c9a8ff" data-a="simonIntro"><span class="ic">📣</span><span>Copy the Coach<small>Watch, listen, copy</small></span></button>
   </div>`);
 }
 
@@ -1658,93 +1679,230 @@ function tttCheck(me){
   return true;
 }
 
-/* ---------- Connect 4 ---------- */
-let C=null;
-const C4_WIN=(()=>{ const w=[]; for(let r=0;r<6;r++)for(let c=0;c<7;c++){
-  if(c<=3) w.push([0,1,2,3].map(k=>r*7+c+k)); if(r<=2) w.push([0,1,2,3].map(k=>(r+k)*7+c));
-  if(r<=2&&c<=3) w.push([0,1,2,3].map(k=>(r+k)*7+c+k)); if(r<=2&&c>=3) w.push([0,1,2,3].map(k=>(r+k)*7+c-k)); } return w; })();
-const c4Line=(b,p)=>C4_WIN.find(w=>w.every(i=>b[i]===p))||null;
-const c4Drop=(b,c)=>{ for(let r=5;r>=0;r--) if(!b[r*7+c]) return r; return -1; };
-const c4Cols=b=>[3,2,4,1,5,0,6].filter(c=>!b[c]);
-function c4Eval(b){                      // positive is good for player 2 (computer)
-  let s=0;
-  for(const w of C4_WIN){ let a=0,o=0; for(const i of w){ if(b[i]===2)a++; else if(b[i]===1)o++; }
-    if(a&&!o) s+=a===3?5:a===2?2:0; else if(o&&!a) s-=o===3?6:o===2?2:0; }
-  for(let r=0;r<6;r++) if(b[r*7+3]===2) s+=3;
-  return s;
-}
-function c4Minimax(b,depth,alpha,beta,maxing){
-  if(c4Line(b,2)) return 100000+depth;
-  if(c4Line(b,1)) return -100000-depth;
-  const cols=c4Cols(b); if(!cols.length) return 0;
-  if(depth===0) return c4Eval(b);
-  let best=maxing?-Infinity:Infinity;
-  for(const c of cols){ const r=c4Drop(b,c); b[r*7+c]=maxing?2:1; const v=c4Minimax(b,depth-1,alpha,beta,!maxing); b[r*7+c]=0;
-    if(maxing){ best=Math.max(best,v); alpha=Math.max(alpha,v); } else { best=Math.min(best,v); beta=Math.min(beta,v); }
-    if(beta<=alpha) break; }
-  return best;
-}
-function c4AI(b,level){
-  const cols=c4Cols(b);
-  const wins=p=>cols.find(c=>{ const r=c4Drop(b,c); b[r*7+c]=p; const w=!!c4Line(b,p); b[r*7+c]=0; return w; });
-  if(level==='easy'){
-    if(Math.random()<.45){ const w=wins(2); if(w!==undefined) return w; const bl=wins(1); if(bl!==undefined) return bl; }
-    return pick(cols);
-  }
-  const depth=level==='tricky'?2:5;
-  let best=-Infinity, moves=[];
-  for(const c of cols){ const r=c4Drop(b,c); b[r*7+c]=2; const v=c4Minimax(b,depth-1,-Infinity,Infinity,false); b[r*7+c]=0;
-    if(v>best){best=v;moves=[c];} else if(v===best) moves.push(c); }
-  return level==='genius'?moves[0]:pick(moves);
-}
-function viewC4Intro(){
-  const w=S.c4;
-  gameIntro({title:'Connect 4', body:`<div class="line">Drop your <span style="color:#e6a800">yellow</span> discs and join four in a line before the <span style="color:#e03b3b">red</span> ones do!</div>
-    <div class="row">${['easy:Easy','tricky:Tricky','genius:Genius','two:2 Players'].map(x=>{const [v,l]=x.split(':'); return tokens()>0?`<button class="btn" data-a="c4Go" data-v="${v}">${l}</button>`:'';}).join('')}</div>
+/* ---------- Newer games share one handle, G, which go() stops on any screen change ---------- */
+let G=null, gArg=null;
+function stopGame(){ if(!G) return; G.over=true; cancelAnimationFrame(G.raf); clearTimeout(G.tm); G=null; }
+window.addEventListener('resize',()=>{ if(G&&G.layout) G.layout(); });
+const place = (el,x,y,w,h) => { el.style.left=x+'px'; el.style.top=y+'px'; el.style.width=w+'px'; el.style.height=h+'px'; };
+const gameShell = (hud,area,cls='') => `<div class="pen"><div class="hud">${hud}</div><div id="garea" class="garea ${cls}">${area}</div></div>`;
+const againRow = (act,v,back) => `<div class="row">${tokens()>0?`<button class="btn" data-a="${act}" ${v?`data-v="${v}"`:''}>↻ Play again (🎟 ${tokens()})</button>`:''}<button class="btn alt" data-a="${back}">Back</button><button class="btn" data-a="math">🔢 Earn more</button></div>`;
+const bestLine = (isBest,best,unit='') => isBest ? '<div class="newhi">🏆 New best!</div>' : `<div class="line">Best: ${best}${unit}</div>`;
+
+/* ---------- Supa Pairs: memory match with the Supa Strikas ---------- */
+const PAIRS_CAST = ['shakes','klaus','joe','matador','rasta','tiger','bo','oa','blok','shaw','eagle','rizo'];
+const PAIRS_N = {easy:6, tricky:8, genius:10, two:8};
+function viewPairsIntro(){
+  const b=S.pairsBest;
+  gameIntro({title:'Supa Pairs', body:`<div class="line">Turn over two cards at a time and find the matching players!</div>
+    <div class="row">${tokens()>0?['easy:Easy','tricky:Tricky','genius:Genius','two:2 Players'].map(x=>{const [v,l]=x.split(':'); return `<button class="btn" data-a="pairsGo" data-v="${v}">${l}</button>`;}).join(''):''}</div>
     <div class="line" style="font-size:16px">Each game uses 1 token (you have ${tokens()}).</div>`,
-    start:'', best:`Wins ${w.w} · Draws ${w.d} · Losses ${w.l}`});
+    start:'', best:`Fewest turns: Easy ${b.easy||'–'} · Tricky ${b.tricky||'–'} · Genius ${b.genius||'–'}`});
 }
-function viewC4(){
-  view(`<div class="quiz" style="align-items:center">
-    <div class="qhead" style="width:100%"><button class="btn alt back" data-a="c4Intro">◀</button><div class="coach" style="flex:1"><div class="fig" id="coachfig">${oa('happy')}</div><div class="bubble" id="bubble"></div></div></div>
-    <div id="c4board">${Array.from({length:7},(_,c)=>`<button class="c4col" data-a="c4Play" data-v="${c}">${Array.from({length:6},(_,r)=>`<span class="hole" id="h${r*7+c}"></span>`).join('')}</button>`).join('')}</div></div>`);
-  tttStatus(C.mode==='two'?'Yellow goes first!':'Your turn, Oa! You are yellow.');
+function viewPairs(){
+  const mode=PAIRS_N[gArg]?gArg:'easy', n=PAIRS_N[mode], ids=shuffle(PAIRS_CAST).slice(0,n), deck=shuffle(ids.concat(ids));
+  view(gameShell('<span class="chip" id="gA"></span><span class="chip" id="gB"></span>', deck.map((_,i)=>`<div class="pcard" data-i="${i}"><div class="back">⚽</div></div>`).join('')));
+  const area=$('#garea'), els=[].slice.call(area.querySelectorAll('.pcard')), face={};
+  ids.forEach(id=>{ face[id]=`<div class="face">${id==='oa'?oa('happy'):player(id)}<b>${castName(id)}</b></div>`; });
+  const me=G={mode,n,deck,els,face,up:[],done:0,turns:0,who:0,sc:[0,0],busy:false};
+  me.layout=()=>{   // the grid shape that gives the biggest 3:4 cards
+    const W=area.clientWidth, H=area.clientHeight, k=deck.length, gap=10; let best=null;
+    for(let cols=2;cols<=k;cols++){ if(k%cols) continue; const rows=k/cols, w=Math.min((W-gap*(cols+1))/cols,(H-gap*(rows+1))/rows*.75);
+      if(!best||w>best.w) best={cols,rows,w}; }
+    const {cols,rows,w}=best, h=w/.75, ox=(W-cols*w-(cols-1)*gap)/2, oy=(H-rows*h-(rows-1)*gap)/2;
+    els.forEach((el,i)=>{ place(el,ox+(i%cols)*(w+gap),oy+Math.floor(i/cols)*(h+gap),w,h); el.style.fontSize=Math.round(w*.13)+'px'; });
+  };
+  me.layout(); pairsHud(me);
+  area.addEventListener('pointerdown',e=>{ const el=e.target.closest('.pcard'); if(el) pairsTap(me,+el.dataset.i); });
 }
-function c4Place(me,c){
-  const r=c4Drop(me.board,c); me.board[r*7+c]=me.turn;
-  const h=$('#h'+(r*7+c)); h.innerHTML=`<i class="disc p${me.turn}" style="--d:${r+1.6}"></i>`; Snd.play('low');
+function pairsHud(me){
+  if(me.mode==='two'){ $('#gA').textContent=`${me.who?'':'👉 '}Player 1: ${me.sc[0]}`; $('#gB').textContent=`${me.who?'👉 ':''}Player 2: ${me.sc[1]}`; }
+  else { $('#gA').textContent=`Pairs ${me.done} / ${me.n}`; $('#gB').textContent=`Turns ${me.turns}`; }
 }
-function c4Play(c){
-  const me=C; if(!me||me.over||me.busy||c4Drop(me.board,c)<0) return;
-  c4Place(me,c);
-  if(c4End(me)) return;
-  me.turn=me.turn===1?2:1;
-  if(me.mode==='two'){ tttStatus(`${me.turn===1?'Yellow':'Red'}, your turn!`); return; }
-  me.busy=true; tttStatus('Computer is thinking…','think');
-  setTimeout(()=>{
-    if(C!==me) return;
-    const m=c4AI(me.board,me.mode); me.busy=false; c4Place(me,m);
-    if(c4End(me)) return;
-    me.turn=1; tttStatus('Your turn, Oa!','happy');
-  },700);
+function pairsFlip(me,i,show){
+  const el=me.els[i]; el.classList.add('flip');
+  setTimeout(()=>{ if(G!==me) return; el.innerHTML=show?me.face[me.deck[i]]:'<div class="back">⚽</div>'; el.classList.toggle('up',show); el.classList.remove('flip'); },150);
 }
-function c4End(me){
-  const w1=c4Line(me.board,1), w2=c4Line(me.board,2), w=w1||w2, full=!me.board.some(v=>!v);
-  if(!w&&!full) return false;
-  me.over=true;
-  if(w) w.forEach(i=>{ const d=$('#h'+i+' .disc'); if(d) d.classList.add('win'); });
-  let title, mood, pts=0;
-  if(me.mode==='two'){ title=w1?'Yellow wins!':w2?'Red wins!':'It’s a draw!'; mood=w?'cheer':'happy'; }
-  else if(w1){ title='You win, Oa!'; mood='cheer'; pts=10; S.c4.w++; }
-  else if(w2){ title='Computer wins. Try again!'; mood='sad'; pts=1; S.c4.l++; }
-  else { title='It’s a draw!'; mood='happy'; pts=3; S.c4.d++; }
+function pairsTap(me,i){
+  if(G!==me||me.busy||me.up.indexOf(i)>=0||me.els[i].classList.contains('done')) return;
+  Snd.resume(); Snd.play('click'); pairsFlip(me,i,true); me.up.push(i);
+  if(me.up.length<2) return;
+  me.busy=true; me.turns++;
+  const a=me.up[0], b=me.up[1], hit=me.deck[a]===me.deck[b];
+  me.tm=setTimeout(()=>{
+    if(G!==me) return;
+    if(hit){ me.els[a].classList.add('done'); me.els[b].classList.add('done'); me.done++; me.sc[me.who]++; Snd.play('good'); }   // a match keeps the turn
+    else { pairsFlip(me,a,false); pairsFlip(me,b,false); if(me.mode==='two') me.who=1-me.who; }
+    me.up=[]; me.busy=false; pairsHud(me);
+    if(me.done===me.n){ me.busy=true; me.tm=setTimeout(()=>{ if(G===me) pairsEnd(me); },700); }
+  }, hit?500:1100);
+}
+function pairsEnd(me){
+  let title, pts=0, extra;
+  if(me.mode==='two'){ const a=me.sc[0], b=me.sc[1]; title=a===b?'It’s a draw!':`Player ${a>b?1:2} wins!`; extra=`<div class="line">Player 1: ${a} pairs · Player 2: ${b} pairs</div>`; }
+  else {
+    const prev=S.pairsBest[me.mode], isBest=!prev||me.turns<prev; if(isBest) S.pairsBest[me.mode]=me.turns;
+    pts={easy:5,tricky:8,genius:12}[me.mode]+(me.turns<=Math.round(me.n*1.6)?5:0);
+    title=`All ${me.n} pairs in ${me.turns} turns!`; extra=bestLine(isBest,prev,' turns')+`<div class="line">+${pts} points</div>`;
+  }
+  S.points+=pts; save(); updBar(); Snd.play('win');
+  endOverlay(`${figHTML('cheer')}<h1>${title}</h1>${extra}${againRow('pairsGo',me.mode,'pairsIntro')}`);
+}
+
+/* ---------- Keepy Uppy: tap the ball to keep it off the grass ---------- */
+function viewKeepyIntro(){
+  gameIntro({title:'Keepy Uppy', body:`<div class="line">Tap the ball to kick it up. Don’t let it touch the grass!<br>You have 3 balls. How many kicks in a row can you do?</div>`,
+    start:startBtn('keepyGo','⚽ Start'), best:`Best: ${S.keepyBest} in a row`});
+}
+function viewKeepy(){
+  view(gameShell('<span class="chip" id="gA"></span><span class="chip" id="gB"></span>',
+    `<div class="koa">${oa('happy')}</div><div class="kball">${ballSVG()}</div><div class="kmsg" id="kmsg">Tap the ball!</div>`,'grass'));
+  const area=$('#garea'), ball=area.querySelector('.kball');
+  const me=G={area,ball,balls:3,run:0,best:0,total:0,wait:true,x:0,y:0,vx:0,vy:0,rot:0,last:performance.now(),lastTap:0};
+  me.layout=()=>{ me.W=area.clientWidth; me.H=area.clientHeight; me.r=Math.max(30,Math.min(me.W,me.H)*.08); me.g=me.H*1.4; me.floor=me.H*.82;
+    ball.style.width=ball.style.height=2*me.r+'px'; if(me.wait){ me.x=me.W/2; me.y=me.H*.4; } };
+  me.layout(); keepyHud(me);
+  area.addEventListener('pointerdown',e=>{
+    if(G!==me||me.over) return;
+    const r=area.getBoundingClientRect(), dx=me.x-(e.clientX-r.left), dy=me.y-(e.clientY-r.top), now=performance.now();
+    if(dx*dx+dy*dy>Math.pow(me.r*1.9,2) || now-me.lastTap<140) return;   // a generous hit area for small fingers
+    me.lastTap=now; me.wait=false; $('#kmsg').textContent='';
+    me.vy=-Math.sqrt(me.g*me.H); me.vx=Math.max(-1,Math.min(1,dx/me.r))*me.W*.28+(Math.random()-.5)*me.W*.08;
+    me.run++; me.total++; if(me.run>me.best) me.best=me.run;
+    Snd.play('kick'); floatPts({ar:area},me.x,me.y-me.r*2,String(me.run));
+    if(me.run%10===0){ me.g*=1.06; Snd.play('coin'); area.querySelector('.koa').innerHTML=oa('cheer'); }
+    keepyHud(me);
+  });
+  me.raf=requestAnimationFrame(t=>keepyTick(me,t));
+}
+function keepyHud(me){ $('#gA').textContent='⚽'.repeat(me.balls)+'⚪'.repeat(3-me.balls); $('#gB').textContent=`In a row: ${me.run} · Best: ${me.best}`; }
+function keepyTick(me,now){
+  if(G!==me||me.over) return;
+  const dt=Math.min(.04,(now-me.last)/1000); me.last=now;
+  if(!me.wait){
+    me.vy+=me.g*dt; me.x+=me.vx*dt; me.y+=me.vy*dt; me.rot+=me.vx*dt*1.5;
+    if(me.x<me.r){ me.x=me.r; me.vx=Math.abs(me.vx)*.8; }
+    if(me.x>me.W-me.r){ me.x=me.W-me.r; me.vx=-Math.abs(me.vx)*.8; }
+    if(me.y<me.r){ me.y=me.r; me.vy=Math.abs(me.vy)*.3; }
+    if(me.y+me.r>=me.floor) keepyDrop(me);
+  }
+  me.ball.style.transform=`translate(${me.x-me.r}px,${me.y-me.r}px) rotate(${me.rot}deg)`;
+  me.raf=requestAnimationFrame(t=>keepyTick(me,t));
+}
+function keepyDrop(me){
+  const fig=me.area.querySelector('.koa'), m=$('#kmsg');
+  me.balls--; me.y=me.floor-me.r; me.wait=true; me.g=me.H*1.4; Snd.play('no'); fig.innerHTML=oa('sad');
+  m.textContent=me.run>1?`${me.run} in a row!`:'Oops!'; me.run=0; keepyHud(me);
+  if(me.balls<=0){ me.over=true; me.tm=setTimeout(()=>{ if(G===me) keepyEnd(me); },800); return; }
+  me.tm=setTimeout(()=>{ if(G!==me||!me.wait) return; me.x=me.W/2; me.y=me.H*.4; m.textContent='Tap the ball!'; fig.innerHTML=oa('happy'); },1000);
+}
+function keepyEnd(me){
+  const isBest=me.best>S.keepyBest; if(isBest) S.keepyBest=me.best;
+  const pts=Math.min(15,Math.floor(me.total/3));
+  S.points+=pts; save(); updBar(); Snd.play(me.best>=10?'win':'ok');
+  endOverlay(`${figHTML('cheer')}<h1>${me.best} kick${me.best===1?'':'s'} in a row!</h1>${bestLine(isBest,S.keepyBest)}
+    <div class="line">${me.total} kicks altogether: +${pts} points</div>${againRow('keepyGo','','keepyIntro')}`);
+}
+
+/* ---------- Red Card!: tap the rivals in black, not the Supa Strikas in red ---------- */
+const RED_SECS = 40;
+const RED_TEAM = ['shakes','joe','matador','rasta','tiger','klaus','blok'];
+function viewRedIntro(){
+  gameIntro({title:'Red Card!', body:`<div class="line">Players pop up out of the holes. Tap the ones in <b>black shirts</b> to show them a red card 🟥<br>Don’t tap your Supa Strikas teammates in red!</div>
+    <div class="row" style="align-items:flex-end"><div class="sfig">${player('rival')}</div><div class="sfig">${player('skarra')}</div><span style="font-size:50px">🟥</span></div>`,
+    start:startBtn('redGo','🟥 Start'), best:`Best: ${S.redBest}`});
+}
+function viewRed(){
+  view(gameShell('<span class="chip" id="gA">⭐ 0</span><div class="timebar"><i id="tb"></i></div>',
+    Array.from({length:9},(_,i)=>`<div class="ghole" id="gh${i}"></div><div class="gcell" id="gc${i}" data-i="${i}"><div class="gmole" id="gm${i}"></div></div>`).join(''),'pitch'));
+  const area=$('#garea');
+  const me=G={area,score:0,cards:0,oops:0,t:0,next:.6,holes:[null,null,null,null,null,null,null,null,null],last:performance.now()};
+  me.layout=()=>{ const cw=area.clientWidth/3, ch=area.clientHeight/3;
+    for(let i=0;i<9;i++){ const x=(i%3)*cw, y=Math.floor(i/3)*ch;
+      place($('#gh'+i),x+cw*.14,y+ch*.82,cw*.72,ch*.16); place($('#gc'+i),x,y+ch*.04,cw,ch*.86); } };
+  me.layout();
+  area.addEventListener('pointerdown',e=>{
+    if(G!==me||me.over) return;
+    const c=e.target.closest('.gcell'); if(!c) return;
+    const i=+c.dataset.i, h=me.holes[i]; if(!h||h.gone||h.hit) return;
+    const r=area.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+    h.hit=true; h.until=me.t+.45;
+    if(h.rival){ me.score+=10; me.cards++; Snd.play('coin'); floatPts({ar:area},x,y-40,'+10'); }
+    else { me.score=Math.max(0,me.score-10); me.oops++; Snd.play('no'); floatPts({ar:area},x,y-40,`Oops! ${castName(h.id)}!`,true); }
+    $('#gm'+i).innerHTML=player(h.id,'sad')+`<div class="gcard">${h.rival?'🟥':'❌'}</div>`;
+    $('#gA').textContent='⭐ '+me.score;
+  });
+  me.raf=requestAnimationFrame(t=>redTick(me,t));
+}
+function redTick(me,now){
+  if(G!==me||me.over) return;
+  const dt=Math.min(.05,(now-me.last)/1000); me.last=now; me.t+=dt;
+  const prog=Math.min(1,me.t/RED_SECS);
+  me.next-=dt; if(me.next<=0){ redPop(me,prog); me.next=(1-.5*prog)*(.7+Math.random()*.5); }
+  me.holes.forEach((h,i)=>{ if(h && me.t>h.until){ if(h.gone) me.holes[i]=null; else redHide(me,i); } });
+  $('#tb').style.transform=`scaleX(${Math.max(0,1-prog)})`;
+  if(prog>=1){ me.over=true; me.holes.forEach((h,i)=>{ if(h) redHide(me,i); }); me.tm=setTimeout(()=>{ if(G===me) redEnd(me); },600); return; }
+  me.raf=requestAnimationFrame(t=>redTick(me,t));
+}
+function redPop(me,prog){
+  const free=[]; me.holes.forEach((h,i)=>{ if(!h) free.push(i); }); if(!free.length) return;
+  const i=pick(free), rival=Math.random()<.68, id=rival?pick(['rival','skarra']):pick(RED_TEAM);
+  me.holes[i]={rival,id,until:me.t+1.5-.7*prog,hit:false};
+  const m=$('#gm'+i); m.innerHTML=player(id); m.className='gmole up';
+}
+function redHide(me,i){ me.holes[i]={gone:true,until:me.t+.3}; $('#gm'+i).className='gmole'; }  // short gap before the hole is used again
+function redEnd(me){
+  const isBest=me.score>S.redBest; if(isBest) S.redBest=me.score;
+  const pts=Math.min(15,Math.round(me.score/20));
+  S.points+=pts; save(); updBar(); Snd.play(me.cards>=10?'win':'ok');
+  endOverlay(`${figHTML(me.cards>=10?'cheer':'happy')}<h1>${me.cards} red card${me.cards===1?'':'s'}!</h1>
+    <div class="big-n" style="font-size:64px;color:var(--c1);font-weight:900">${me.score}</div>${bestLine(isBest,S.redBest)}
+    ${me.oops?`<div class="line">Oops, you carded ${me.oops} teammate${me.oops===1?'':'s'}.</div>`:''}<div class="line">+${pts} points</div>${againRow('redGo','','redIntro')}`);
+}
+
+/* ---------- Copy the Coach: watch the pattern, then tap it back ---------- */
+const PADS = [{c:'#ff5a5a',e:'⚽'},{c:'#3b8dff',e:'👟'},{c:'#ffc93c',e:'🧤'},{c:'#4cc552',e:'🏆'}];
+function viewSimonIntro(){
+  gameIntro({title:'Copy the Coach', mood:'think', body:`<div class="line">Coach Ledige lights up the buttons. Watch and listen, then tap them in the same order!<br>Each time you get it right, the pattern gets one longer. You get one second chance.</div>`,
+    start:startBtn('simonGo','👀 Start'), best:`Longest pattern: ${S.simonBest}`});
+}
+function viewSimon(){
+  view(`<div class="pen"><div class="coach"><div class="sfig" style="height:110px">${player('coach')}</div><div class="bubble" id="bubble">Watch me!</div></div>
+    <div id="garea" class="garea" style="background:var(--c3)">${PADS.map((p,i)=>`<div class="spad" id="sp${i}" data-i="${i}" style="background:${p.c}">${p.e}</div>`).join('')}</div></div>`);
+  const area=$('#garea'), me=G={seq:[],pos:0,turn:false,miss:0,best:0};
+  me.layout=()=>{ const W=area.clientWidth, H=area.clientHeight, gap=18, s=Math.min((W-gap*3)/2,(H-gap*3)/2), ox=(W-2*s-gap)/2, oy=(H-2*s-gap)/2;
+    PADS.forEach((_,i)=>{ const el=$('#sp'+i); place(el,ox+(i%2)*(s+gap),oy+Math.floor(i/2)*(s+gap),s,s); el.style.fontSize=Math.round(s*.4)+'px'; }); };
+  me.layout();
+  area.addEventListener('pointerdown',e=>{ const p=e.target.closest('.spad'); if(p) simonTap(me,+p.dataset.i); });
+  me.tm=setTimeout(()=>simonNext(me),800);
+}
+const simonSay = t => { const b=$('#bubble'); if(b) b.textContent=t; };
+function simonLight(i,ms){ const p=$('#sp'+i); if(!p) return; Snd.play('p'+i); p.classList.add('lit'); setTimeout(()=>p.classList.remove('lit'),ms); }
+function simonNext(me){ if(G!==me) return; me.seq.push(rnd(0,3)); simonShow(me); }
+function simonShow(me){
+  me.turn=false; me.pos=0; simonSay('Watch me!');
+  const gap=Math.max(380,700-me.seq.length*30);
+  me.seq.forEach((p,k)=>setTimeout(()=>{ if(G===me) simonLight(p,gap*.6); },400+k*gap));
+  me.tm=setTimeout(()=>{ if(G!==me) return; me.turn=true; simonSay(`Your turn! Copy ${me.seq.length}.`); },400+me.seq.length*gap);
+}
+function simonTap(me,i){
+  if(G!==me||!me.turn) return;
+  Snd.resume(); simonLight(i,250);
+  if(i!==me.seq[me.pos]){
+    me.turn=false; me.miss++;
+    if(me.miss>=2){ me.over=true; Snd.play('lose'); simonSay('Oh no!'); me.tm=setTimeout(()=>{ if(G===me) simonEnd(me); },900); return; }
+    Snd.play('no'); simonSay('Not quite! Watch again.'); me.tm=setTimeout(()=>{ if(G===me) simonShow(me); },1200); return;
+  }
+  if(++me.pos<me.seq.length) return;
+  me.turn=false; me.best=me.seq.length; simonSay(pick(PRAISE));
+  setTimeout(()=>{ if(G===me) Snd.play('good'); },250);
+  me.tm=setTimeout(()=>simonNext(me),1200);
+}
+function simonEnd(me){
+  const isBest=me.best>S.simonBest; if(isBest) S.simonBest=me.best;
+  const pts=Math.min(15,me.best);
   S.points+=pts; save(); updBar();
-  Snd.play(w&&(me.mode==='two'||w1)?'win':w?'lose':'ok');
-  tttStatus(title+(pts?` +${pts} points`:''),mood);
-  setTimeout(()=>{ if(C!==me) return;
-    endOverlay(`${figHTML(mood)}<h1>${title}</h1>${pts?`<div class="line">+${pts} points</div>`:''}
-      <div class="row">${tokens()>0?`<button class="btn" data-a="c4Go" data-v="${me.mode}">↻ Play again (🎟 ${tokens()})</button>`:''}<button class="btn alt" data-a="c4Intro">Back</button><button class="btn" data-a="math">🔢 Earn more</button></div>`); },1500);
-  return true;
+  endOverlay(`${figHTML(me.best>=5?'cheer':'happy')}<h1>You copied ${me.best} in a row!</h1>${bestLine(isBest,S.simonBest)}
+    <div class="line">+${pts} points</div>${againRow('simonGo','','simonIntro')}`);
 }
 
 /* ---------- Modal + parent area ---------- */
@@ -1773,8 +1931,11 @@ const ACT = {
   home:()=>go('home'), math:()=>go('math'), read:()=>go('read'), words:()=>go('words'),
   arcadeIntro:()=>go('arcadeIntro'), games:()=>go('games'),
   penIntro:()=>go('penIntro'), penGo:()=>{ if(!spendToken()) return; go('pen'); },
+  pairsIntro:()=>go('pairsIntro'), pairsGo:d=>{ if(!spendToken()) return; gArg=d.v; go('pairs'); },
+  keepyIntro:()=>go('keepyIntro'), keepyGo:()=>{ if(!spendToken()) return; go('keepy'); },
+  redIntro:()=>go('redIntro'), redGo:()=>{ if(!spendToken()) return; go('red'); },
+  simonIntro:()=>go('simonIntro'), simonGo:()=>{ if(!spendToken()) return; go('simon'); },
   tttIntro:()=>go('tttIntro'), tttGo:d=>{ if(!spendToken()) return; T={board:Array(9).fill(''),turn:'X',mode:d.v,over:false,busy:false}; go('ttt'); }, tttPlay:d=>tttPlay(+d.v),
-  c4Intro:()=>go('c4Intro'), c4Go:d=>{ if(!spendToken()) return; C={board:Array(42).fill(0),turn:1,mode:d.v,over:false,busy:false}; go('c4'); }, c4Play:d=>c4Play(+d.v),
   arcadeGo:()=>{ if(tokens()<1) return; const e=$('#arcadeEnd'); if(e) e.remove(); S.spent++; save(); go('arcade'); },
   topic:d=>startRound('math',d.v), locked:()=>{ Snd.play('no'); },
   book:d=>go('book',{bi:+d.v,pi:0}),
